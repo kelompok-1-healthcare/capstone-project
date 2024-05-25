@@ -6,12 +6,23 @@
   @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body>
-    <section class="bg-white flex items-center justify-center min-h-screen">
+  <nav class="bg-white border-gray-200 dark:bg-gray-900 absolute w-full top-0 left-0 z-10">
+    <div class="flex items-center p-4">
+        <a href="javascript:history.back()" class="text-blue-500 hover:text-blue-700 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span class="ml-2">Back</span>
+        </a>
+    </div>
+</nav>
+
+    <section class="bg-white flex items-center justify-center min-h-screen pt-20 md:pt-24 pb-20 md:pb-24">
         <div class="container mx-auto px-4">
           <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
             <div class="flex flex-wrap md:flex-nowrap">
               <div class="w-full md:w-1/2 bg-[#025F80] flex items-center justify-center p-6">
-                <img src={{asset('assets/robot.svg')}} alt="Robot" class="max-w-full">
+                <img src={{asset('assets/robot.svg')}} alt="Robot" class="max-w-full md:max-w-xs">
               </div>
               <div class="w-full md:w-1/2 bg-[#B9D6DB] p-6">
                 <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Daftar Akun</h2>
