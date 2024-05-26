@@ -38,14 +38,11 @@ class GeneralController extends Controller
                 return redirect('/register')->with('error', 'Email already registered');
             }
 
-            // Custom ID Generation Logic
             $count = $u->count();
             $user_id = 'SOMNO-' . str_pad($count + 1, 4, '0', STR_PAD_LEFT);
 
-            // Set custom ID in $dt
             $dt['user_id'] = $user_id;
 
-            // Create user with custom ID
             $user = $u->create($dt);
 
             return redirect()->back()->with('success', 'Register Success');
