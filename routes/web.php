@@ -17,3 +17,6 @@ use App\Http\Controllers\GeneralController;
 
 Route::get('/', [GeneralController::class, 'landing_page']);
 Route::get('/register', [GeneralController::class, 'register_page']);
+
+// API Route
+Route::post('/api/register', [GeneralController::class, 'register_process']);
