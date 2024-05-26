@@ -8,9 +8,9 @@
 </head>
 
 <body>
-    <section class="bg-white flex items-center justify-center min-h-screen">
+    <section class="bg-gray-100 flex items-center justify-center min-h-screen">
         <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="max-w-3xl mx-auto rounded-lg shadow-md overflow-hidden">
                 <div class="flex flex-wrap md:flex-nowrap">
                     <div class="left w-full md:w-1/2 bg-primary flex items-center justify-center p-6">
                         <img src={{ asset('assets/robot.svg') }} alt="Robot" class="max-w-full" draggable="false">
@@ -21,7 +21,6 @@
                                 class="text-blue-600 hover:underline hover:underline-offset-2 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
                                 ">Masuk</a>
                         </p>
-                        {{-- /api/register --}}
                         <form action="/api/register" method="POST">
                             @csrf
                             <div class="mb-4">
@@ -47,8 +46,9 @@
                                         class="block w-full mt-1 p-2 border rounded-md bg-slate-50" required>
                                 </div>
                             </div>
-                            <button type="submit"
-                                class="w-full bg-primary text-white py-2 rounded-md hover:bg-gray-500 focus:outline-none transition duration-300">Daftar</button>
+                            <button
+                                class="w-full bg-primary text-white py-2 rounded-md hover:bg-gray-500 focus:outline-none transition duration-300"
+                                id="btn_daftar">Daftar</button>
                         </form>
                     </div>
                 </div>
@@ -69,6 +69,35 @@
         @if (session('error'))
             alert("{{ session('error') }}");
         @endif
+
+        $('#btn_daftar').click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: '/api/register',
+                type: 'POST',
+                data: {
+                    name: $('#name').val(),
+                    email: $('#email').val(),
+                    password: $('#password').val(),
+                    password_confirmation: $('#password_confirmation').val(),
+                },
+                success: function(response) {
+                    toastr.success(response.message);
+                    setTimeout(() => {
+                        window.location.href = '/login';
+                    }, 1000);
+                },
+                error: function(xhr) {
+                    if (xhr.status == 422) {
+                        $.each(xhr.responseJSON.errors, function(key, value) {
+                            toastr.error(value);
+                        });
+                    } else {
+                        toastr.error(xhr.responseJSON.message);
+                    }
+                }
+            });
+        });
     </script>
 
 </body>
