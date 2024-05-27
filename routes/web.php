@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\GeneralController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('landingpage');
-});
-Route::get('/register', function () {
-    return view('register');
-});
+Route::get('/', [GeneralController::class, 'landing_page']);
+Route::get('/register', [GeneralController::class, 'register_page']);
+
+// API Route
+Route::post('/api/register', [GeneralController::class, 'register_process']);
