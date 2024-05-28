@@ -41,8 +41,26 @@
     </div>
   </section>
 
+  {{-- Fitur Klasifikasi --}}
+  <section class="bg-white flex flex-col-reverse items-center justify-center min-h-screen mt-20">
+    <div class="container mx-auto max-w-screen-xl p-4">
+        <div class="flex flex-col md:flex-row items-center justify-between text-center md:text-left">
+            <img src="{{ asset('assets/klasifikasi-pic.svg') }}" alt="Sleeping Illustration" class="w-full object-contain order-2 md:order-1">
+            <div class="order-1 md:order-2 mb-6 md:mb-0 md:ml-6 max-w-lg">
+                <h1 class="text-3xl md:text-4xl font-bold text-bold">Klasifikasi Gangguan Tidur</h1>
+                <p class="mt-4 text-primary">Tidur adalah jendela kebahagiaan yang tak ternilai. Dengan teknologi kami, kita dapat membantu mengenali gangguan yang menghalangi pintu itu terbuka lebar.</p>
+                <div class="flex justify-center md:justify-start mt-6 w-full md:w-auto order-3 md:order-none"> 
+                    <button href="#" class="text-white bg-primary hover:bg-gray-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center">
+                        Mulai
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
   {{-- artikel --}}
-  <section class="items-center justify-center min-h-screen mt-40">
+  <section class="items-center justify-center min-h-screen mt-20">
     <div class="container mx-auto max-w-screen-xl p-4">
       <h1 class="text-3xl md:text-4xl font-bold text-bold text-center mb-20">Artikel terkait Gangguan Tidur</h1>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
