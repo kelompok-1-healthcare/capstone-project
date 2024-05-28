@@ -21,3 +21,4 @@ Route::get('/login', [GeneralController::class, 'login_page']);
 
 // API Route
 Route::post('/api/register', [GeneralController::class, 'register_process']);
+Route::post('/api/login', [GeneralController::class, 'login_process']);

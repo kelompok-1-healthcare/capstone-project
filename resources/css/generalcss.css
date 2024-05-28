@@ -1,0 +1,5 @@
+/*  scrollbar width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+

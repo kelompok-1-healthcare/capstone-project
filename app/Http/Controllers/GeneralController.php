@@ -55,4 +55,30 @@ class GeneralController extends Controller
             return redirect()->back()->with('error', $th->getMessage());
         }
     }
+
+    public function login_process(Request $request)
+    {
+        $u = new User();
+        try {
+            $dt = $u->validate($request, [
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
+
+            $user = $u->where('email', $dt['email'])->first();
+            if (!$user) {
+                return redirect('/login')->with('error', 'Email not registered');
+            }
+
+            if (!password_verify($dt['password'], $user->password)) {
+                return redirect('/login')->with('error', 'Password not match');
+            }
+
+            session(['user' => $user]);
+
+            return redirect('/');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
 }
