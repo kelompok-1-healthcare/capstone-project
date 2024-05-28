@@ -83,7 +83,7 @@
                 <div
                     class="max-w-sm bg-secondary border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <img class="w-full h-auto rounded-t-lg object-cover" src={{ asset('assets/gambar-1.svg') }}
-                        alt="" />
+                        alt="" draggable="false"/>
                     <div class="p-5">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-bold">
                             Badan Sakit saat Bangun Tidur?
@@ -102,7 +102,7 @@
                 <div
                     class="max-w-sm bg-secondary border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <img class="w-full h-auto rounded-t-lg object-cover" src={{ asset('assets/gambar-2.svg') }}
-                        alt="" />
+                        alt="" draggable="false"/>
                     <div class="p-5">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-bold">
                             Apa itu Microsleep?
@@ -121,7 +121,7 @@
                 <div
                     class="max-w-sm bg-secondary border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <img class="w-full h-auto rounded-t-lg object-cover" src={{ asset('assets/gambar-3.svg') }}
-                        alt="" />
+                        alt="" draggable="false"/>
                     <div class="p-5">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-bold">
                             Kenali Tanda Gangguan Tidur
