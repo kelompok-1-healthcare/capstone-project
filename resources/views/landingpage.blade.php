@@ -108,5 +108,28 @@
       </div>
     </div>
   </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    var navbar = $("#navbar");
+    var navHeight = navbar.height();
+    var lastScrollTop = 0;
+
+  $(window).scroll(function() {
+    var scrollTop = $(this).scrollTop();
+    if (scrollTop > lastScrollTop && scrollTop > navHeight) {
+      // Scroll down
+      navbar.addClass("bg-white border-b border-gray-200 dark:border-transparent");
+      navbar.removeClass("bg-transparent border-b border-transparent dark:border-transparent");
+    } else {
+      // Scroll up
+      navbar.removeClass("bg-white border-b border-gray-200 dark:border-transparent");
+      navbar.addClass("bg-transparent border-b border-transparent dark:border-transparent");
+    }
+    lastScrollTop = scrollTop;
+    });
+  });
+  </script>
 </body>
 </html>
