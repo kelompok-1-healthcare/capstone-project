@@ -19,6 +19,7 @@ Route::get('/', [GeneralController::class, 'landing_page']);
 Route::get('/register', [GeneralController::class, 'register_page']);
 Route::get('/login', [GeneralController::class, 'login_page']);
 Route::get('/home', [GeneralController::class, 'home_page']);
+Route::get('/artikel', [GeneralController::class, 'artikel_page']);
 
 // API Route
 Route::post('/api/register', [GeneralController::class, 'register_process']);

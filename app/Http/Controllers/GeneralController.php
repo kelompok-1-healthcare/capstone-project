@@ -28,6 +28,11 @@ class GeneralController extends Controller
         return view('homepage');
     }
 
+    public function artikel_page()
+    {
+        return view('artikel');
+    }
+
 
     // Backend Controller
     public function register_process(Request $request)
