@@ -14,7 +14,7 @@
         <div class="container mx-auto max-w-screen-xl p-4">
             
             {{-- search --}}
-            <form class="max-w-xs mx-auto flex items-center">
+            <form class="max-w-xl mx-auto flex items-center">
                 <input type="search" id="default-search" class="block w-full py-2 px-4 text-sm text-gray-900 placeholder-gray-500 border bg-gray-200 border-primary rounded-l-lg focus:outline-none focus:ring-primary focus:border-primary transition-colors duration-300" placeholder="Cari Artikel" required />
                 <button type="submit" class="bg-primary text-white py-2 px-4 rounded-r-lg hover:bg-gray-500 focus:outline-none focus:ring-4 transition-colors duration-300">Cari</button>
             </form>
@@ -91,7 +91,7 @@
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                             Kenapa sering ngantuk? Jika pertanyaan ini muncul, mungkin sudah saatnya kamu mengevaluasi gaya hidup sehari-hari karena penyebabnya beragam...
                         </p>
-                        <a href="https://wolipop.detik.com/health-and-diet/d-6448891/3-cara-agar-cepat-tidur-dengan-metode-ilmiah-2-menit-langsung-pules"
+                        <a href="https://health.detik.com/berita-detikhealth/d-7335957/kenapa-sering-mengantuk-ini-11-penyebabnya-nggak-cuma-lelah"
                             class="text-blue-600 hover:underline hover:text-blue-800">
                             Baca selengkapnya
                         </a>
@@ -107,9 +107,9 @@
                             Kenali Gejala Sleep Apnea
                         </h5>
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            Sleep apnea atau apnea tidur adalah gangguan yang menyebabkan pernapasan berhenti sementara saat sedang tidur............................................................
+                            Sleep apnea atau apnea tidur adalah gangguan yang menyebabkan pernapasan berhenti sementara saat sedang tidur. Pengidap sleep apnea bisa mengalami henti napas...
                         </p>
-                        <a href="https://www.detik.com/jateng/berita/d-7356049/apa-itu-microsleep-ini-pengertian-penyebab-gejala-hingga-penanganannya"
+                        <a href="https://health.detik.com/penyakit/sleep-apnea-d-7122517"
                             class="text-blue-600 hover:underline hover:text-blue-800">
                             Baca selengkapnya
                         </a>
@@ -125,9 +125,9 @@
                             5 Cara Sudahi Insomnia
                         </h5>
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            Insomnia adalah salah satu gangguan kesulitan tidur. Sebanyak 30 persen orang dewasa di dunia mengalami gangguan tidur. Siapa sangka...
+                            Insomnia adalah salah satu gangguan kesulitan tidur. Sebanyak 30 persen orang dewasa di dunia mengalami gangguan tidur. Siapa sangkainsomnia bisa meningkatkan risiko...
                         </p>
-                        <a href="https://20.detik.com/detikupdate/20240223-240223091/3-tanda-kamu-mengalami-gangguan-tidur"
+                        <a href="https://www.detik.com/jatim/berita/d-6963433/5-cara-sudahi-insomnia-agar-tak-berisiko-sakit-jantung"
                             class="text-blue-600 hover:underline hover:text-blue-800">
                             Baca selengkapnya
                         </a>
