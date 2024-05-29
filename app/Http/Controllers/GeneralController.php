@@ -23,6 +23,11 @@ class GeneralController extends Controller
         return view('login');
     }
 
+    public function home_page()
+    {
+        return view('homepage');
+    }
+
 
     // Backend Controller
     public function register_process(Request $request)
