@@ -76,89 +76,83 @@
 
     {{-- artikel --}}
     <section class="items-center justify-center min-h-screen mt-40">
-        <div class="container mx-auto max-w-screen-xl p-4">
-            <h1 class="text-3xl md:text-4xl font-bold text-bold text-center mb-20">Artikel terkait Gangguan Tidur</h1>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {{-- card 1 --}}
-                <div
-                    class="max-w-sm bg-secondary border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <img class="w-full h-auto rounded-t-lg object-cover" src={{ asset('assets/gambar-1.svg') }}
-                        alt="" draggable="false"/>
-                    <div class="p-5">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-bold">
-                            Badan Sakit saat Bangun Tidur?
-                        </h5>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            Pernahkah Anda mengalami badan sakit saat bangun tidur di pagi hari? Biasanya, hal ini
-                            terjadi jika Anda melakukan aktivitas berat...
-                        </p>
-                        <a href="#"
-                            class="text-blue-600 hover:underline hover:underline-offset-2 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                            Baca selengkapnya
-                        </a>
-                    </div>
-                </div>
-                {{-- card 2 --}}
-                <div
-                    class="max-w-sm bg-secondary border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <img class="w-full h-auto rounded-t-lg object-cover" src={{ asset('assets/gambar-2.svg') }}
-                        alt="" draggable="false"/>
-                    <div class="p-5">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-bold">
-                            Apa itu Microsleep?
-                        </h5>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            Pernahkah kamu tidak sadar sudah tertidur selama beberapa detik? Jika ya, kamu mungkin telah
-                            mengalami microsleep...
-                        </p>
-                        <a href="#"
-                            class="text-blue-600 hover:underline hover:underline-offset-2 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                            Baca selengkapnya
-                        </a>
-                    </div>
-                </div>
-                {{-- card 3 --}}
-                <div
-                    class="max-w-sm bg-secondary border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <img class="w-full h-auto rounded-t-lg object-cover" src={{ asset('assets/gambar-3.svg') }}
-                        alt="" draggable="false"/>
-                    <div class="p-5">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-bold">
-                            Kenali Tanda Gangguan Tidur
-                        </h5>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            Pakar kesehatan tidur dr. Andreas Prasadja, RPSGT, menyebut ada 3 gejala dalam gangguan
-                            tidur. Apa bedanya ketiga gejala tersebut?
-                        </p>
-                        <a href="#"
-                            class="text-blue-600 hover:underline hover:underline-offset-2 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                            Baca selengkapnya
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col lg:flex-row justify-between items-start mt-8">
-                <div class="lg:w-3/4 lg:mr-6">
-                    <p class="text-primary text-center lg:text-left">Jelajahi artikel kami untuk informasi lebih lanjut
-                        tentang cara mengatasi gangguan tidur dan meningkatkan kualitas tidur Anda. Temukan solusi
-                        praktis dan terbukti yang membantu Anda tidur lebih nyaman setiap malam.</p>
-                </div>
-                <div class="ml-auto mx-auto lg:text-center lg:mx-0">
-                    <button href="#"
-                        class="text-white bg-primary hover:bg-gray-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 mt-6 lg:mt-0">Jelajahi</button>
-                </div>
-            </div>
-        </div>
+      <div class="container mx-auto max-w-screen-xl p-4">
+          <h1 class="text-3xl md:text-4xl font-bold text-bold text-center mb-20">Artikel terkait Gangguan Tidur</h1>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {{-- card 1 --}}
+              <div
+                  class="max-w-sm bg-secondary border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                  <img class="w-full h-auto rounded-t-lg object-cover" src={{ asset('assets/gambar-1.svg') }}
+                      alt="" draggable="false"/>
+                  <div class="p-5">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-bold">
+                          Badan Sakit saat Bangun Tidur?
+                      </h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                          Pernahkah Anda mengalami badan sakit saat bangun tidur di pagi hari? Biasanya, hal ini
+                          terjadi jika Anda melakukan aktivitas berat...
+                      </p>
+                      <a href="https://wolipop.detik.com/health-and-diet/d-6448891/3-cara-agar-cepat-tidur-dengan-metode-ilmiah-2-menit-langsung-pules"
+                          class="text-blue-600 hover:underline hover:text-blue-800">
+                          Baca selengkapnya
+                      </a>
+                  </div>
+              </div>
+              {{-- card 2 --}}
+              <div
+                  class="max-w-sm bg-secondary border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                  <img class="w-full h-auto rounded-t-lg object-cover" src={{ asset('assets/gambar-2.svg') }}
+                      alt="" draggable="false"/>
+                  <div class="p-5">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-bold">
+                          Apa itu Microsleep?
+                      </h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                          Pernahkah kamu tidak sadar sudah tertidur selama beberapa detik? Jika ya, kamu mungkin telah
+                          mengalami microsleep...
+                      </p>
+                      <a href="https://www.detik.com/jateng/berita/d-7356049/apa-itu-microsleep-ini-pengertian-penyebab-gejala-hingga-penanganannya"
+                          class="text-blue-600 hover:underline hover:text-blue-800">
+                          Baca selengkapnya
+                      </a>
+                  </div>
+              </div>
+              {{-- card 3 --}}
+              <div
+                  class="max-w-sm bg-secondary border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                  <img class="w-full h-auto rounded-t-lg object-cover" src={{ asset('assets/gambar-3.svg') }}
+                      alt="" draggable="false"/>
+                  <div class="p-5">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-bold">
+                          Kenali Tanda Gangguan Tidur
+                      </h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                          Pakar kesehatan tidur dr. Andreas Prasadja, RPSGT, menyebut ada 3 gejala dalam gangguan
+                          tidur. Apa bedanya ketiga gejala tersebut?
+                      </p>
+                      <a href="https://20.detik.com/detikupdate/20240223-240223091/3-tanda-kamu-mengalami-gangguan-tidur"
+                          class="text-blue-600 hover:underline hover:text-blue-800">
+                          Baca selengkapnya
+                      </a>
+                  </div>
+              </div>
+          </div>
+          <div class="flex flex-col lg:flex-row justify-between items-start mt-8">
+              <div class="lg:w-3/4 lg:mr-6">
+                  <p class="text-primary text-center lg:text-left">Jelajahi artikel kami untuk informasi lebih lanjut
+                      tentang cara mengatasi gangguan tidur dan meningkatkan kualitas tidur Anda. Temukan solusi
+                      praktis dan terbukti yang membantu Anda tidur lebih nyaman setiap malam.</p>
+              </div>
+              <div class="ml-auto mx-auto lg:text-center lg:mx-0">
+                  <button href="#"
+                      class="text-white bg-primary hover:bg-gray-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 mt-6 lg:mt-0">Jelajahi</button>
+              </div>
+          </div>
+      </div>
     </section>
 
-    <footer>
-        <div class="container mx-auto max-w-screen-xl p-4 mt-10">
-            <hr class="border-primary">
-            <div class="text-center mt-5 mb-10">
-                <h6 class="text-bold font-bold">&copy;2024SOMNO. All rights reserved.</h6>
-            </div>
-        </div>
-    </footer>
+    {{-- footer --}}
+    @include('generalFooter')
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
