@@ -55,12 +55,12 @@
                   <img src={{ asset('assets/logo.svg') }} class="h-8" alt="Somno Logo" draggable="false" />
               </a>
               <div class="flex items-center space-x-6 rtl:space-x-reverse">
-                  <a href="#"
+                  <a href="/login"
                       class="text-sm font-bold text-bold hover:underline hover:underline-offset-4">Login</a>
-                  <button href="#"
+                  <a href="/register"
                       class="text-white bg-primary hover:bg-gray-500 hover:duration-300 hover:ease-in-out focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center">Sign
                       Up
-                  </button>
+                  </a>
               </div>
           </div>
       </nav>

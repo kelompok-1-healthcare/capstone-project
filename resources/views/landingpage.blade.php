@@ -62,10 +62,10 @@
                         kedamaian ke malam Anda dengan metode yang terbukti hanya dengan bernapas, rileks, dan tidur!
                     </p>
                     <div class="flex justify-center md:justify-start mt-6 w-full md:w-auto order-3 md:order-none">
-                        <button href="#"
+                        <a href="/register"
                             class="text-white bg-primary hover:bg-gray-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center">
                             Mulai
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <img src="{{ asset('assets/hero-pic.svg') }}" alt="Sleeping Illustration"
@@ -144,8 +144,8 @@
                       praktis dan terbukti yang membantu Anda tidur lebih nyaman setiap malam.</p>
               </div>
               <div class="ml-auto mx-auto lg:text-center lg:mx-0">
-                  <button href="#"
-                      class="text-white bg-primary hover:bg-gray-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 mt-6 lg:mt-0">Jelajahi</button>
+                  <a href="/artikel"
+                      class="text-white bg-primary hover:bg-gray-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 mt-6 lg:mt-0">Jelajahi</a>
               </div>
           </div>
       </div>

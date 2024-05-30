@@ -30,7 +30,7 @@
                     </div>
                     <div class="right w-full md:w-3/4 bg-secondary p-6">
                         <h2 class="text-2xl font-bold text-bold mb-4 text-center">Login</h2>
-                        <p class="text-gray-600 mb-4 text-center">Jika belum memiliki akun silahkan <a href="#"
+                        <p class="text-gray-600 mb-4 text-center">Jika belum memiliki akun silahkan <a href="/register"
                                 class="text-blue-600 hover:underline hover:underline-offset-2 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
                                 ">Daftar
                                 disini</a>.
