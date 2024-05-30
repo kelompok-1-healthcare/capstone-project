@@ -24,7 +24,7 @@
           <!-- Persentase Keseluruhan -->
           <!-- Persentase Keseluruhan -->
         <div class="bg-teal-50 dark:bg-gray-600 rounded-lg flex flex-col md:flex-row items-center justify-center p-4">
-          <div class="w-16 h-16 rounded-full bg-teal-200 text-bold text-lg font-bold text-bold flex items-center justify-center mb-4 md:mb-0 md:mr-4">80%</div>
+          <div class="w-16 h-16 rounded-full bg-teal-200 text-bold text-lg font-bold flex items-center justify-center mb-4 md:mb-0 md:mr-4">80%</div>
           <div class="text-center md:text-left">
             <h5 class="text-2xl font-bold text-bold">Persentase Keseluruhan</h5>
             <p class="mt-2 text-primary">Kualitas tidur Anda tergolong baik.</p>
