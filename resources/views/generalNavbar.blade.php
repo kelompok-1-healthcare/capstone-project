@@ -8,7 +8,6 @@ if (!session('user') && ($currentPage != 'login' && $currentPage != 'register' &
 ?>
 
 @if (session('user'))
-    {{--  ambil data user dan tampilkan --}}
     <nav id="navbar" class="fixed top-0 w-full z-10">
         <div
             class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4 bg-transparent transition-all duration-500 border-b border-transparent dark:bg-gray-900">
