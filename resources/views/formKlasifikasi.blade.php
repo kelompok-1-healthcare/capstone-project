@@ -24,13 +24,13 @@
                         <label for="gender" class="block mb-2 text-sm font-medium text-bold">Jenis Kelamin</label>
                         <select id="gender" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option disabled selected hidden>Pilih jenis kelamin</option>
-                            <option>Perempuan</option>
-                            <option>Laki-laki</option>
+                            <option>Pria</option>
+                            <option>Wanita</option>
                         </select>
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-4">
-                        <label for="number-input" class="block mb-2 text-sm font-medium text-bold">Select a number:</label>
-                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukan umur anda" required />
+                        <label for="number-input" class="block mb-2 text-sm font-medium text-bold">Umur</label>
+                        <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukan umur anda" min="0" max="120" required />
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-4">
                         <label for="occupation" class="block mb-2 text-sm font-medium text-bold">Pekerjaan</label>
@@ -48,40 +48,41 @@
                             <option>Kekurangan Berat Badan</option>
                             <option>Normal</option>
                             <option>Kelebihan Berat Badan</option>
+                            <option>Obesitas</option>
                         </select>
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-6">
                         <label for="input5" class="block mb-2 text-sm font-medium text-bold">Tekanan darah</label>
-                        <input type="text" id="input5" name="input5" class="w-full px-3 py-2 border rounded-md" placeholder=".../...mmHg">
+                        <input type="text" id="input5" name="input5" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=".../...mmHg">
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-6">
                         <label for="sleep-quality-range" class="block mb-2 text-sm font-medium text-bold">Kualitas tidur</label>
-                        <input id="sleep-quality-range" type="range" min="0" max="100" value="0" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                        <input id="sleep-quality-range" type="range" min="0" max="10" value="0" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                         <output id="range-sleep-quality" class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">0</output>
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-6">
                         <label for="stress-level-range" class="block mb-2 text-sm font-medium text-bold">Tingkat Stres</label>
-                        <input id="stress-level-range" type="range" min="0" max="100" value="0" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                        <input id="stress-level-range" type="range" min="0" max="10" value="0" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                         <output id="range-stress-level" class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">0</output>
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-6">
                         <label for="duration-range" class="block mb-2 text-sm font-medium text-bold">Durasi Tidur</label>
-                        <input id="duration-range" type="range" min="0" max="100" value="0" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                        <input id="duration-range" type="range" min="0" max="10" value="0" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                         <output id="range-duration" class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">0</output>
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-6">
                         <label for="systolic-range" class="block mb-2 text-sm font-medium text-bold">Tekanan saat jantung memompa darah</label>
-                        <input id="systolic-range" type="range" min="0" max="100" value="0" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                        <input id="systolic-range" type="range" min="0" max="10" value="0" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                         <output id="range-systolic" class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">0</output>
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-6">
                         <label for="diastolic-range" class="block mb-2 text-sm font-medium text-bold">Tekanan saat jantung berelaksasi sebelum kembali memompa darah</label>
-                        <input id="diastolic-range" type="range" min="0" max="100" value="0" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                        <input id="diastolic-range" type="range" min="0" max="10" value="0" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                         <output id="range-diastolic" class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">0</output>
                     </div>
                     <div class="w-full px-4 mt-10 text-center">
                         <button type="submit" class="w-1/2 md:w-1/3 bg-primary text-white py-2 px-4 rounded-lg hover:bg-gray-500 focus:ring-4 focus:outline-none">
-                            Submit
+                            Kirim
                         </button>
                     </div>
                 </form>
@@ -106,40 +107,48 @@
                 navbar.classList.add('bg-transparent');
             }
         });
+        
+        // input umur
+        document.getElementById('number-input').addEventListener('input', function (e) {
+            var input = e.target;
+            if (input.value < 0) input.value = 0;
+            if (input.value > 120) input.value = 120;
+        });
     
-    // kulitas Tidur
-    const sleepQualityRange = document.getElementById('sleep-quality-range');
-    const rangeSleepQuality = document.getElementById('range-sleep-quality');
-    sleepQualityRange.addEventListener('input', function() {
-    rangeSleepQuality.textContent = sleepQualityRange.value;
-    });
+        // kulitas Tidur
+        const sleepQualityRange = document.getElementById('sleep-quality-range');
+        const rangeSleepQuality = document.getElementById('range-sleep-quality');
+        sleepQualityRange.addEventListener('input', function() {
+        rangeSleepQuality.textContent = sleepQualityRange.value;
+        });
 
-    // tingkat stres
-    const stressLevelRange = document.getElementById('stress-level-range');
-    const rangeStressLevel = document.getElementById('range-stress-level');
-    stressLevelRange.addEventListener('input', function() {
-    rangeStressLevel.textContent = stressLevelRange.value;
-    });
+        // tingkat stres
+        const stressLevelRange = document.getElementById('stress-level-range');
+        const rangeStressLevel = document.getElementById('range-stress-level');
+        stressLevelRange.addEventListener('input', function() {
+        rangeStressLevel.textContent = stressLevelRange.value;
+        });
 
-    // Durasi Tidur
-    const durationRange = document.getElementById('duration-range');
-    const rangeDuration = document.getElementById('range-duration');
-    durationRange.addEventListener('input', function() {
-    rangeDuration.textContent = durationRange.value;
-    });
+        // Durasi Tidur
+        const durationRange = document.getElementById('duration-range');
+        const rangeDuration = document.getElementById('range-duration');
+        durationRange.addEventListener('input', function() {
+        rangeDuration.textContent = durationRange.value;
+        });
 
+        // systolic
+        const systolicRange = document.getElementById('systolic-range');
+        const rangeSystolic = document.getElementById('range-systolic');
+        systolicRange.addEventListener('input', function() {
+        rangeSystolic.textContent = systolicRange.value;
+        });
 
-    const systolicRange = document.getElementById('systolic-range');
-    const rangeSystolic = document.getElementById('range-systolic');
-    systolicRange.addEventListener('input', function() {
-    rangeSystolic.textContent = systolicRange.value;
-    });
-
-    const diastolicRange = document.getElementById('diastolic-range');
-    const rangeDiastolic = document.getElementById('range-diastolic');
-    diastolicRange.addEventListener('input', function() {
-    rangeDiastolic.textContent = diastolicRange.value;
-    });
+        // diastolic
+        const diastolicRange = document.getElementById('diastolic-range');
+        const rangeDiastolic = document.getElementById('range-diastolic');
+        diastolicRange.addEventListener('input', function() {
+        rangeDiastolic.textContent = diastolicRange.value;
+        });
     </script>
 </body>
 
