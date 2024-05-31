@@ -20,6 +20,7 @@ Route::get('/register', [GeneralController::class, 'register_page']);
 Route::get('/login', [GeneralController::class, 'login_page']);
 Route::get('/home', [GeneralController::class, 'home_page']);
 Route::get('/artikel', [GeneralController::class, 'artikel_page']);
+Route::get('/klasifikasi-gangguan-tidur', [GeneralController::class, 'klasifikasi_page']);
 
 // API Route
 Route::post('/api/register', [GeneralController::class, 'register_process']);

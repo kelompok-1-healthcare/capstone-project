@@ -33,6 +33,11 @@ class GeneralController extends Controller
         return view('artikel');
     }
 
+    public function klasifikasi_page()
+    {
+        return view('homeKlasifikasi');
+    }
+
 
     // Backend Controller
     public function register_process(Request $request)
