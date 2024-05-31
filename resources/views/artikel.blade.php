@@ -4,25 +4,25 @@ $listArtikel = [
         'judul' => 'Badan Sakit saat Bangun Tidur?',
         'deskripsi' => 'Pernahkah Anda mengalami badan sakit saat bangun tidur di pagi hari? Biasanya, hal ini terjadi jika Anda melakukan aktivitas berat...',
         'link' => 'https://wolipop.detik.com/health-and-diet/d-6448891/3-cara-agar-cepat-tidur-dengan-metode-ilmiah-2-menit-langsung-pules',
-        'gambar' => 'gambar-1.svg',
+        'gambar' => 'https://akcdn.detik.net.id/community/media/visual/2022/07/20/ilustrasi-wanita-tidur_169.jpeg?w=700&q=90',
     ],
     [
         'judul' => 'Apa itu Microsleep?',
         'deskripsi' => 'Pernahkah kamu tidak sadar sudah tertidur selama beberapa detik? Jika ya, kamu mungkin telah mengalami microsleep...',
         'link' => 'https://www.detik.com/jateng/berita/d-7356049/apa-itu-microsleep-ini-pengertian-penyebab-gejala-hingga-penanganannya',
-        'gambar' => 'gambar-2.svg',
+        'gambar' => 'https://akcdn.detik.net.id/community/media/visual/2022/01/29/ilustrasi-sakit-kepala-atau-pusing-saat-bangun-tidur_169.jpeg?w=700&q=90',
     ],
     [
         'judul' => 'Kenali Tanda Gangguan Tidur',
         'deskripsi' => 'Pakar kesehatan tidur dr. Andreas Prasadja, RPSGT, menyebut ada 3 gejala dalam gangguan tidur. Apa bedanya ketiga gejala tersebut?',
         'link' => 'https://20.detik.com/detikupdate/20240223-240223091/3-tanda-kamu-mengalami-gangguan-tidur',
-        'gambar' => 'gambar-3.svg',
+        'gambar' => 'assets/gambar-3.svg',
     ],
     [
         'judul' => 'Kenapa Sering Mengantuk?',
         'deskripsi' => 'Kenapa sering ngantuk? Jika pertanyaan ini muncul, mungkin sudah saatnya kamu mengevaluasi gaya hidup sehari-hari karena penyebabnya beragam...',
         'link' => 'https://health.detik.com/berita-detikhealth/d-7335957/kenapa-sering-mengantuk-ini-11-penyebabnya-nggak-cuma-lelah',
-        'gambar' => 'gambar-4.svg',
+        'gambar' => 'https://akcdn.detik.net.id/community/media/visual/2019/05/31/e367d77a-3b0f-4931-9674-a4c8d16abcd9_169.jpeg?w=700&q=90',
     ],
 ];
 ?>
@@ -169,7 +169,7 @@ $listArtikel = [
                 ?>
                 <div
                     class="max-w-sm bg-secondary border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <img class="w-full h-auto rounded-t-lg object-cover" src={{ asset('assets/' . $artikel['gambar']) }}
+                    <img class="w-full h-64 rounded-t-lg object-cover" src={{ asset($artikel['gambar']) }}
                         alt="" draggable="false" />
                     <div class="p-5">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-bold">
