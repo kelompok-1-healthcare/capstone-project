@@ -86,9 +86,15 @@ class GeneralController extends Controller
 
             session(['user' => $user]);
 
-            return redirect('/');
+            return redirect('/home');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }
+    }
+
+    public function logout_process()
+    {
+        session()->forget('user');
+        return redirect('/login');
     }
 }

@@ -1,3 +1,10 @@
+<?php
+$currentPage = basename($_SERVER['REQUEST_URI']);
+if (session('user') && ($currentPage == 'login' || $currentPage == 'register')) {
+    echo "<script>window.location.href = '/';</script>";
+}
+?>
+
 <!doctype html>
 <html>
 
@@ -5,6 +12,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <title>Somno | Login</title>
 </head>
 
 <body>
@@ -57,11 +66,6 @@
         </div>
     </section>
 
-    <script>
-        @if (session('success'))
-            alert('{{ session('success') }}');
-        @endif
-    </script>
 
 </body>
 

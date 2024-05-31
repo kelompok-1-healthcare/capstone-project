@@ -24,3 +24,4 @@ Route::get('/artikel', [GeneralController::class, 'artikel_page']);
 // API Route
 Route::post('/api/register', [GeneralController::class, 'register_process']);
 Route::post('/api/login', [GeneralController::class, 'login_process']);
+Route::get('/api/logout', [GeneralController::class, 'logout_process']);
