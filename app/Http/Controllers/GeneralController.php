@@ -38,6 +38,11 @@ class GeneralController extends Controller
         return view('homeKlasifikasi');
     }
 
+    public function formKlasifikasi_page()
+    {
+        return view('formKlasifikasi');
+    }
+
 
     // Backend Controller
     public function register_process(Request $request)
