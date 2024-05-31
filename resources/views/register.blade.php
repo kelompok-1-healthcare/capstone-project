@@ -79,7 +79,6 @@ $currentPage = basename($_SERVER['REQUEST_URI']);
 
     <script>
         @if (session('success'))
-            // alert("{{ session('success') }}");
             toastr.success("{{ session('success') }}");
         @endif
 
