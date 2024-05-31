@@ -1,8 +1,8 @@
 <?php
 $currentPage = basename($_SERVER['REQUEST_URI']);
-if (session('user') && ($currentPage == 'login' || $currentPage == 'register')) {
-    echo "<script>window.location.href = '/';</script>";
-}
+// if (session('user') && ($currentPage == 'login' || $currentPage == 'register')) {
+//     echo "<script>window.location.href = '/';</script>";
+// }
 ?>
 
 <!doctype html>
