@@ -41,15 +41,15 @@
                             <option>Lainnya</option>
                         </select>
                     </div>
-                    <div class="w-full md:w-1/2 px-4 mb-4">
-                        <label for="bmi" class="block mb-2 text-sm font-medium text-bold">Kategori BMI</label>
-                        <select id="bmi" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option disabled selected hidden>Pilih kategori BMI</option>
-                            <option>Kekurangan Berat Badan</option>
-                            <option>Normal</option>
-                            <option>Kelebihan Berat Badan</option>
-                            <option>Obesitas</option>
-                        </select>
+                    <div class="w-full md:w-1/2 px-4 mb-4 flex space-x-4">
+                        <div class="w-1/2">
+                            <label for="height-input" class="block mb-2 text-sm font-medium text-bold">Tinggi Badan (cm)</label>
+                            <input type="number" id="height-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukan tinggi badan anda" min="50" max="300" required />
+                        </div>
+                        <div class="w-1/2">
+                            <label for="weight-input" class="block mb-2 text-sm font-medium text-bold">Berat Badan (kg)</label>
+                            <input type="number" id="weight-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukan berat badan anda" min="10" max="500" required />
+                        </div>
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-6">
                         <label for="input5" class="block mb-2 text-sm font-medium text-bold">Tekanan darah</label>
@@ -113,6 +113,20 @@
             var input = e.target;
             if (input.value < 0) input.value = 0;
             if (input.value > 120) input.value = 120;
+        });
+
+        // input tinggi badan
+        document.getElementById('height-input').addEventListener('input', function (e) {
+            var input = e.target;
+            if (input.value < 0) input.value = 0;
+            if (input.value > 300) input.value = 300;
+        });
+
+        // input berat badan
+        document.getElementById('weight-input').addEventListener('input', function (e) {
+            var input = e.target;
+            if (input.value < 0) input.value = 0;
+            if (input.value > 500) input.value = 500;
         });
     
         // kulitas Tidur
