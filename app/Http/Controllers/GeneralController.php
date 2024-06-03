@@ -33,6 +33,31 @@ class GeneralController extends Controller
         return view('artikel');
     }
 
+    public function klasifikasi_page()
+    {
+        return view('homeKlasifikasi');
+    }
+
+    public function formKlasifikasi_page()
+    {
+        return view('formKlasifikasi');
+    }
+
+    public function hasilKlasifikasi_page()
+    {
+        return view('hasilKlasifikasi');
+    }
+
+    public function formKualitasTidur_page()
+    {
+        return view('formKualitasTidur');
+    }
+
+    public function formTingkatStres_page()
+    {
+        return view('formTingkatStres');
+    }
+
 
     // Backend Controller
     public function register_process(Request $request)
