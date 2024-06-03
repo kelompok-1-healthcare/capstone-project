@@ -24,6 +24,7 @@ Route::get('/klasifikasi-gangguan-tidur', [GeneralController::class, 'klasifikas
 Route::get('/form-klasifikasi-gangguan-tidur', [GeneralController::class, 'formKlasifikasi_page']);
 Route::get('/hasil-klasifikasi-gangguan-tidur', [GeneralController::class, 'hasilKlasifikasi_page']);
 Route::get('/form-kualitas-tidur', [GeneralController::class, 'formKualitasTidur_page']);
+Route::get('/form-tingkat-stres', [GeneralController::class, 'formTingkatStres_page']);
 
 // API Route
 Route::post('/api/register', [GeneralController::class, 'register_process']);

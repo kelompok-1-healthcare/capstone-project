@@ -11,24 +11,24 @@
     {{-- navbar --}}
     @include('generalNavbar')
 
-    {{-- Form Kualitas Tidur --}}
+    {{-- Form Penilaian Stres --}}
     <section class="bg-white flex items-center justify-center mt-16 md:mt-20 pt-4 mt:pt-16">
         <div class="container mx-auto max-w-screen-xl p-4">
             <div class="flex flex-col items-center text-center">
-                <h1 class="text-3xl md:text-4xl font-bold text-bold mb-4">Penilaian Kualitas Tidur</h1>
-                <p class="text-primary mb-16 max-w-3xl">Tidur nyenyak adalah kunci hidup sehat! Jawab pertanyaan-pertanyaan berikut dalam skala 1-10 untuk mengevaluasi tidur Anda. Mari kita mulai!</p>
+                <h1 class="text-3xl md:text-4xl font-bold text-bold mb-4">Penilaian Tingkat Stres</h1>
+                <p class="text-primary mb-16 max-w-3xl">Stres dapat memengaruhi banyak aspek kehidupan kita. Jawab pertanyaan-pertanyaan berikut dalam skala 1-10 untuk mengukur tingkat stres Anda. Ini akan membantu kami memahami kondisi Anda dan memberikan saran yang lebih baik!</p>
             </div>
             <div class="bg-secondary p-10 rounded-lg shadow-lg">
                 <form class="space-y-8">
                     <!-- Pertanyaan 1 -->
                     <div>
-                        <h5 class="text-lg  font-medium text-bold mb-2">Bagaimana Anda menilai kualitas tidur Anda dalam sebulan terakhir?</h5>
-                        <p class="mb-4">(1: Sangat Buruk, 10: Sangat Baik)</p>
+                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa stres Anda merasa tentang kesehatan fisik Anda?</h5>
+                        <p class="mb-4">(1: Tidak Stres, 10: Sangat Stres)</p>
                         <div class="flex justify-start space-x-10">
                             @for($i = 1; $i <= 10; $i++)
                                 <div class="flex items-center">
-                                    <input id="quality-{{ $i }}" type="radio" value="{{ $i }}" name="quality" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="quality-{{ $i }}" class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
+                                    <input id="physical-health-stress-{{ $i }}" type="radio" value="{{ $i }}" name="physical_health_stress" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                                    <label for="physical-health-stress-{{ $i }}" class="ml-2 text-sm font-medium text-bold">{{ $i }}</label>
                                 </div>
                             @endfor
                         </div>
@@ -36,13 +36,13 @@
 
                     <!-- Pertanyaan 2 -->
                     <div>
-                        <h5 class="text-lg  font-medium text-bold mb-2">Berapa lama biasanya Anda butuh waktu untuk tertidur pada malam hari?</h5>
-                        <p class="mb-4">(1: > 60 menit, 10: ≤ 15 menit)</p>
+                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa stres Anda merasa tentang kesehatan mental Anda?</h5>
+                        <p class="mb-4">(1: Tidak Stres, 10: Sangat Stres)</p>
                         <div class="flex justify-start space-x-10">
                             @for($i = 1; $i <= 10; $i++)
                                 <div class="flex items-center">
-                                    <input id="sleep-time-{{ $i }}" type="radio" value="{{ $i }}" name="sleep_time" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="sleep-time-{{ $i }}" class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
+                                    <input id="mental-health-stress-{{ $i }}" type="radio" value="{{ $i }}" name="mental_health_stress" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                                    <label for="mental-health-stress-{{ $i }}" class="ml-2 text-sm font-medium text-bold">{{ $i }}</label>
                                 </div>
                             @endfor
                         </div>
@@ -50,13 +50,13 @@
 
                     <!-- Pertanyaan 3 -->
                     <div>
-                        <h5 class="text-lg  font-medium text-bold mb-2">Berapa lama biasanya Anda tidur pada malam hari?</h5>
-                        <p class="mb-4">(1: < 5 jam, 10: > 7 jam)</p>
+                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa stres Anda merasa tentang beban kerja Anda?</h5>
+                        <p class="mb-4">(1: Tidak Stres, 10: Sangat Stres)</p>
                         <div class="flex justify-start space-x-10">
                             @for($i = 1; $i <= 10; $i++)
                                 <div class="flex items-center">
-                                    <input id="sleep-duration-{{ $i }}" type="radio" value="{{ $i }}" name="sleep_duration" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="sleep-duration-{{ $i }}" class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
+                                    <input id="workload-stress-{{ $i }}" type="radio" value="{{ $i }}" name="workload_stress" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                                    <label for="workload-stress-{{ $i }}" class="ml-2 text-sm font-medium text-bold">{{ $i }}</label>
                                 </div>
                             @endfor
                         </div>
@@ -64,13 +64,13 @@
 
                     <!-- Pertanyaan 4 -->
                     <div>
-                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa sering Anda mengalami gangguan tidur seperti terbangun di malam hari?</h5>
-                        <p class="mb-4">(1: ≥ 3 kali per minggu, 10: Tidak pernah)</p>
+                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa stres Anda merasa tentang hubungan sosial Anda?</h5>
+                        <p class="mb-4">(1: Tidak Stres, 10: Sangat Stres)</p>
                         <div class="flex justify-start space-x-10">
                             @for($i = 1; $i <= 10; $i++)
                                 <div class="flex items-center">
-                                    <input id="sleep-disturbance-{{ $i }}" type="radio" value="{{ $i }}" name="sleep_disturbance" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="sleep-disturbance-{{ $i }}" class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
+                                    <input id="social-relationship-stress-{{ $i }}" type="radio" value="{{ $i }}" name="social_relationship_stress" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                                    <label for="social-relationship-stress-{{ $i }}" class="ml-2 text-sm font-medium text-bold">{{ $i }}</label>
                                 </div>
                             @endfor
                         </div>
@@ -78,13 +78,13 @@
 
                     <!-- Pertanyaan 5 -->
                     <div>
-                        <h5 class="text-lg  font-medium text-bold mb-2">Berapa banyak waktu yang Anda habiskan di tempat tidur dibandingkan dengan waktu tidur sebenarnya?</h5>
-                        <p class="mb-4">(1: < 65%, 10: > 85%)</p>
+                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa stres Anda merasa tentang keuangan Anda?</h5>
+                        <p class="mb-4">(1: Tidak Stres, 10: Sangat Stres)</p>
                         <div class="flex justify-start space-x-10">
                             @for($i = 1; $i <= 10; $i++)
                                 <div class="flex items-center">
-                                    <input id="bed-time-ratio-{{ $i }}" type="radio" value="{{ $i }}" name="bed_time_ratio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="bed-time-ratio-{{ $i }}" class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
+                                    <input id="financial-stress-{{ $i }}" type="radio" value="{{ $i }}" name="financial_stress" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                                    <label for="financial-stress-{{ $i }}" class="ml-2 text-sm font-medium text-bold">{{ $i }}</label>
                                 </div>
                             @endfor
                         </div>
@@ -92,13 +92,13 @@
 
                     <!-- Pertanyaan 6 -->
                     <div>
-                        <h5 class="text-lg  font-medium text-bold mb-2">Seberapa sering Anda menggunakan obat tidur untuk membantu tidur?</h5>
-                        <p class="mb-4">(1: ≥ 3 kali per minggu, 10: Tidak pernah)</p>
+                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa stres Anda merasa tentang kualitas tidur Anda?</h5>
+                        <p class="mb-4">(1: Tidak Stres, 10: Sangat Stres)</p>
                         <div class="flex justify-start space-x-10">
                             @for($i = 1; $i <= 10; $i++)
                                 <div class="flex items-center">
-                                    <input id="sleep-medication-{{ $i }}" type="radio" value="{{ $i }}" name="sleep_medication" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="sleep-medication-{{ $i }}" class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
+                                    <input id="sleep-quality-stress-{{ $i }}" type="radio" value="{{ $i }}" name="sleep_quality_stress" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                                    <label for="sleep-quality-stress-{{ $i }}" class="ml-2 text-sm font-medium text-bold">{{ $i }}</label>
                                 </div>
                             @endfor
                         </div>
@@ -106,13 +106,13 @@
 
                     <!-- Pertanyaan 7 -->
                     <div>
-                        <h5 class="text-lg  font-medium text-bold mb-2">Seberapa sering Anda merasa kesulitan untuk tetap terjaga atau mengalami kantuk pada siang hari?</h5>
-                        <p class="mb-4">(1: ≥ 3 kali per minggu, 10: Tidak pernah)</p>
+                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa stres Anda merasa tentang keseimbangan antara pekerjaan dan kehidupan pribadi Anda?</h5>
+                        <p class="mb-4">(1: Tidak Stres, 10: Sangat Stres)</p>
                         <div class="flex justify-start space-x-10">
                             @for($i = 1; $i <= 10; $i++)
                                 <div class="flex items-center">
-                                    <input id="daytime-sleepiness-{{ $i }}" type="radio" value="{{ $i }}" name="daytime_sleepiness" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="daytime-sleepiness-{{ $i }}" class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
+                                    <input id="work-life-balance-stress-{{ $i }}" type="radio" value="{{ $i }}" name="work_life_balance_stress" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                                    <label for="work-life-balance-stress-{{ $i }}" class="ml-2 text-sm font-medium text-bold">{{ $i }}</label>
                                 </div>
                             @endfor
                         </div>

@@ -53,6 +53,11 @@ class GeneralController extends Controller
         return view('formKualitasTidur');
     }
 
+    public function formTingkatStres_page()
+    {
+        return view('formTingkatStres');
+    }
+
 
     // Backend Controller
     public function register_process(Request $request)
