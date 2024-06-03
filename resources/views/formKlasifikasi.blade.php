@@ -11,7 +11,7 @@
     {{-- navbar --}}
     @include('generalNavbar')
 
-    {{-- Fitur Klasifikasi --}}
+    {{-- Form Klasifikasi --}}
     <section class="bg-white flex items-center justify-center mt-16 md:mt-20 pt-4 mt:pt-16">
         <div class="container mx-auto max-w-screen-xl p-4">
             <div class="flex flex-col items-center text-center">

@@ -23,6 +23,7 @@ Route::get('/artikel', [GeneralController::class, 'artikel_page']);
 Route::get('/klasifikasi-gangguan-tidur', [GeneralController::class, 'klasifikasi_page']);
 Route::get('/form-klasifikasi-gangguan-tidur', [GeneralController::class, 'formKlasifikasi_page']);
 Route::get('/hasil-klasifikasi-gangguan-tidur', [GeneralController::class, 'hasilKlasifikasi_page']);
+Route::get('/form-kualitas-tidur', [GeneralController::class, 'formKualitasTidur_page']);
 
 // API Route
 Route::post('/api/register', [GeneralController::class, 'register_process']);
