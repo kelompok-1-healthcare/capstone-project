@@ -9,31 +9,38 @@
   {{-- navbar --}}
   @include('generalNavbar')
 
-  {{-- hero section --}}
-  <section class="bg-secondary flex items-center justify-center min-h-screen mb-3 md:mb-20">
-    <div class="container mx-auto max-w-screen-xl p-4">
-      <div class="flex items-center justify-center min-h-screen">
-        <div class="max-w-2xl w-full bg-white rounded-lg shadow dark:bg-gray-800 flex flex-col items-center justify-center p-10 md:p-12">
-          <div>
-            <h5 class="text-2xl font-bold text-bold text-center mb-6">Kualitas Tidur</h5>
-          </div>
-          <!-- Radial chart container -->
-          <div class="flex items-center justify-center mb-8">
-            <div class="w-full h-auto max-w-lg" id="radial-chart"></div>
-          </div>
-          <!-- Persentase Keseluruhan -->
-          <!-- Persentase Keseluruhan -->
-        <div class="bg-teal-50 dark:bg-gray-600 rounded-lg flex flex-col md:flex-row items-center justify-center p-4">
-          <div class="w-16 h-16 rounded-full bg-teal-200 text-bold text-lg font-bold flex items-center justify-center mb-4 md:mb-0 md:mr-4">80%</div>
-          <div class="text-center md:text-left">
-            <h5 class="text-2xl font-bold text-bold">Persentase Keseluruhan</h5>
-            <p class="mt-2 text-primary">Kualitas tidur Anda tergolong baik.</p>
-          </div>
-        </div>
+<!-- Hero section -->
+<section class="bg-secondary flex items-center justify-center min-h-screen mb-3 mt-20 md:mt-0">
+  <div class="container mx-auto max-w-screen-xl p-4 flex flex-col md:flex-row items-center justify-between w-full">
+    <!-- Left side -->
+    <div class="w-full md:w-1/3 bg-white rounded-xl shadow dark:bg-gray-800 flex flex-col items-center justify-center p-4 md:p-10 mb-4 md:mb-0 md:mr-4">
+      <!-- Radial chart container -->
+      <div class="flex items-center justify-center mb-10">
+        <div class="w-full h-auto" id="radial-chart"></div>
+      </div>
+      <!-- Persentase Keseluruhan -->
+      <div class="bg-teal-50 dark:bg-gray-600 rounded-lg flex flex-col md:flex-row items-center justify-center p-4">
+        <div class="w-16 h-16 rounded-full bg-teal-200 text-bold text-lg font-bold flex items-center justify-center mb-4 md:mb-0 md:mr-4">80%</div>
+        <div class="text-center md:text-left">
+          <h5 class="text-lg font-bold text-bold">Persentase Keseluruhan</h5>
+          <p class="mt-2 text-sm text-primary">Kualitas tidur Anda tergolong baik.</p>
         </div>
       </div>
     </div>
-  </section>
+
+    <!-- Right side -->
+    <div class="w-full md:w-2/3 bg-white rounded-xl shadow dark:bg-gray-800 flex flex-col items-center justify-center p-4 md:p-12">
+      <!-- Column chart container -->
+      <div class="w-full h-auto">
+        <h5 class="text-2xl text-center font-bold text-bold mb-2">Tingkat Stres</h5>
+        <div id="column-charts" class="text-lg"></div>
+      </div>
+    </div>
+  </div>
+</section>
+  
+  
+
 
   {{-- Fitur Klasifikasi --}}
   <section class="bg-white flex flex-col-reverse items-center justify-center min-h-screen mb-3 md:mb-20">
@@ -133,10 +140,9 @@
   {{-- footer --}}
   @include('generalFooter')
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script>
-  window.addEventListener('scroll', function() {
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script>
+    window.addEventListener('scroll', function() {
     var navbar = document.querySelector('#navbar');
     if (window.scrollY > 50) {
       navbar.classList.remove('bg-transparent');
@@ -149,73 +155,80 @@
     }
   });
 
-  
-  const getChartOptions = () => {
-    return {
-      series: [90, 80],
-      colors: ["#025F80", "#8BCFDB"],
+  document.addEventListener("DOMContentLoaded", function () {
+    // Radial Chart Configuration
+    var radialOptions = {
+      series: [80],
       chart: {
-        height: "380px",
-        width: "100%",
-        type: "radialBar",
-        sparkline: {
-          enabled: true,
-        },
+        height: 350,
+        type: 'radialBar',
       },
       plotOptions: {
         radialBar: {
-          track: {
-            background: '#E5E7EB',
-          },
-          dataLabels: {
-            show: false,
-          },
           hollow: {
-            margin: 0,
-            size: "32%",
+            size: '70%',
           }
         },
       },
-      grid: {
-        show: false,
-        strokeDashArray: 4,
-        padding: {
-          left: 2,
-          right: 2,
-          top: -23,
-          bottom: -20,
-        },
+      labels: ['Kualitas Tidur'],
+    };
+
+    // Column Chart Configuration
+  var columnOptions = {
+    series: [{
+      name: 'Tingkat Stres',
+      data: [2, 5, 3, 7, 10, 6, 4]
+    }],
+    chart: {
+      type: 'bar',
+      height: 350
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false,
+        columnWidth: '55%',
+        endingShape: 'rounded',
+        distributed: true, // Enable distributed colors
       },
-      labels: ["Di tempat tidur", "Durasi tidur"],
-      legend: {
-        show: true,
-        position: "bottom",
-        fontFamily: "Inter, sans-serif",
-      },
-      tooltip: {
-        enabled: true,
-        x: {
-          show: false,
-        },
-      },
-      yaxis: {
-        show: false,
-        labels: {
-          formatter: function (value) {
-            return value + ' jam';
-          }
+    },
+    colors: ['#1E3A8A', '#DC2626', '#16A34A', '#F59E0B', '#7C3AED', '#6366F1', '#DB2777'],
+    dataLabels: {
+      enabled: false
+    },
+    xaxis: {
+      categories: [
+        'Tidur',
+        'Keseimbangan Hidup',
+        'Kesehatan Fisik',
+        'Kesehatan Mental',
+        'Beban Kerja',
+        'Hubungan Sosial',
+        'Keuangan'
+      ],
+      labels: {
+        show: false // Hide x-axis labels
+      }
+    },
+    fill: {
+      opacity: 1
+    },
+    tooltip: {
+      y: {
+        formatter: function (val) {
+          return val;
         }
       }
     }
-  }
+  };
 
-  if (document.getElementById("radial-chart") && typeof ApexCharts !== 'undefined') {
-    const chart = new ApexCharts(document.querySelector("#radial-chart"), getChartOptions());
-    chart.render();
-  }
+    // Render Radial Chart
+    var radialChart = new ApexCharts(document.querySelector("#radial-chart"), radialOptions);
+    radialChart.render();
 
-  const chart = new ApexCharts(el, options);
-  chart.render();
-</script>
+    // Render Column Chart
+    var columnChart = new ApexCharts(document.querySelector("#column-charts"), columnOptions);
+    columnChart.render();
+  });
+  </script>
 </body>
 </html>
