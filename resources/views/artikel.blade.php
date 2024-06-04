@@ -111,11 +111,10 @@ $listArtikel = [
     ],
 ];
 
-// ambil page dari url
 $page = $_GET['page'] ?? 1;
 $perPage = 6;
-$offset = ($page - 1) * $perPage; // 0, 6, 12, 18, 24
-$limit = $offset + $perPage; // 6, 12, 18, 24, 30
+$offset = ($page - 1) * $perPage;
+$limit = $offset + $perPage;
 $artikel = array_slice($listArtikel, $offset, $perPage);
 ?>
 
