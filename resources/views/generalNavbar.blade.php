@@ -1,12 +1,3 @@
-<?php
-$currentPage = basename($_SERVER['REQUEST_URI']);
-
-// if (!session('user') && ($currentPage != 'login' && $currentPage != 'register' && $currentPage != '')) {
-//     echo "<script>window.location.href = '/login';</script>";
-// }
-
-?>
-
 @if (session('user'))
     <nav id="navbar" class="fixed top-0 w-full z-10">
         <div

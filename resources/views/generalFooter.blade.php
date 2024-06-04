@@ -1,3 +1,9 @@
+<?php
+if (!session()->has('user')) {
+    echo "<script>window.location.href = '/login';</script>";
+    return view('login');
+}
+?>
 <footer>
     <div class="container mx-auto max-w-screen-xl p-4 mt-10">
         <hr class="border-primary">

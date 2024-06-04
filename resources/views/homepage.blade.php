@@ -1,3 +1,9 @@
+<?php
+if (!session()->has('user')) {
+    echo "<script>window.location.href = '/login';</script>";
+    return view('login');
+}
+?>
 <!doctype html>
 <html>
 

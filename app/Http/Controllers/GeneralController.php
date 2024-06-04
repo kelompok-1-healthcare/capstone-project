@@ -122,4 +122,15 @@ class GeneralController extends Controller
         session()->forget('user');
         return redirect('/login');
     }
+
+    function hitung_BMI($berat_badan, $tinggi_badan)
+    {
+        // Konversi tinggi badan ke meter
+        $tinggi_badan_meter = $tinggi_badan / 100;
+
+        // Hitung BMI
+        $bmi = $berat_badan / ($tinggi_badan_meter * $tinggi_badan_meter);
+
+        return $bmi;
+    }
 }
