@@ -148,6 +148,19 @@ class GeneralController extends Controller
             return "Please fill all fields";
         }
 
+        $isValid = true;
+        $fields = ['quality', 'sleep_time', 'sleep_duration', 'sleep_disturbance', 'bed_time_ratio', 'sleep_medication', 'daytime_sleepiness'];
+        foreach ($fields as $field) {
+            if (!isset($answers[$field])) {
+                $isValid = false;
+                break;
+            }
+        }
+
+        if (!$isValid) {
+            return "Please fill all fields";
+        }
+
         $score = ($answers['quality'] + $answers['sleep_time'] + $answers['sleep_duration'] + $answers['sleep_disturbance'] + $answers['bed_time_ratio'] + $answers['sleep_medication'] + $answers['daytime_sleepiness']) / 7;
 
         session(['quality_of_sleep' => round($score, 1)]);
@@ -155,19 +168,38 @@ class GeneralController extends Controller
 
     public function calculate_stress_level($answers)
     {
-        if (count($answers) != 7) {
+        if (count($answers) <= 7) {
             return "Please fill all fields";
         }
 
-        $score = array_sum($answers) / count($answers);
-        return $score;
+        $isValid = true;
+        $fields = ['physical_health_stress', 'mental_health_stress', 'workload_stress', 'social_relationship_stress', 'financial_stress', 'sleep_quality_stress', 'work_life_balance_stress'];
+        foreach ($fields as $field) {
+            if (!isset($answers[$field])) {
+                $isValid = false;
+                break;
+            }
+        }
+
+        if (!$isValid) {
+            return "Please fill all fields";
+        }
+
+        $score = ($answers['physical_health_stress'] + $answers['mental_health_stress'] + $answers['workload_stress'] + $answers['social_relationship_stress'] + $answers['financial_stress'] + $answers['sleep_quality_stress'] + $answers['work_life_balance_stress']) / 7;
+
+        session(['stress_level' => round($score, 1)]);
     }
 
     public function kualitas_tidur_process(Request $request)
     {
         $answers = $request->all();
-        $this->calculate_quality_of_sleep($answers);
 
+        $fields = ['quality', 'sleep_time', 'sleep_duration', 'sleep_disturbance', 'bed_time_ratio', 'sleep_medication', 'daytime_sleepiness'];
+        foreach ($fields as $field) {
+            if (!isset($answers[$field])) {
+                return redirect('/form-kualitas-tidur')->with('error', 'Please fill all fields');
+            }
+        }
 
         $user = session('user');
         $user->score_sleep_quality = session('quality_of_sleep');
@@ -179,5 +211,22 @@ class GeneralController extends Controller
 
     public function tingkat_stres_process(Request $request)
     {
+        $answers = $request->all();
+
+        $fields = ['physical_health_stress', 'mental_health_stress', 'workload_stress', 'social_relationship_stress', 'financial_stress', 'sleep_quality_stress', 'work_life_balance_stress'];
+        foreach ($fields as $field) {
+            if (!isset($answers[$field])) {
+                return redirect('/form-tingkat-stres')->with('error', 'Please fill all fields');
+            }
+        }
+
+        $this->calculate_stress_level($answers);
+
+        $user = session('user');
+        $user->score_stress_quality = session('stress_level');
+        $user->save();
+        session(['user' => $user]);
+
+        return redirect('/form-klasifikasi-gangguan-tidur')->with('success', 'Tingkat stres berhasil dihitung', 'score', $this->calculate_stress_level($answers));
     }
 }

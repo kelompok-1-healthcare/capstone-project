@@ -116,6 +116,10 @@ $listPertanyaan = [
                 navbar.classList.add('bg-transparent');
             }
         });
+
+        @if (session('error'))
+            alert("{{ session('error') }}");
+        @endif
     </script>
 
 </body>

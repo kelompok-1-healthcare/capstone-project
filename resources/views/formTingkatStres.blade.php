@@ -3,6 +3,44 @@ if (!session()->has('user')) {
     echo "<script>window.location.href = '/login';</script>";
     return view('login');
 }
+
+$listPertanyaan = [
+    [
+        'pertanyaan' => 'Seberapa stres Anda merasa tentang kesehatan fisik Anda?',
+        'skala' => '(1: Tidak Stres, 10: Sangat Stres)',
+        'id' => 'physical_health_stress',
+    ],
+    [
+        'pertanyaan' => 'Seberapa stres Anda merasa tentang kesehatan mental Anda?',
+        'skala' => '(1: Tidak Stres, 10: Sangat Stres)',
+        'id' => 'mental_health_stress',
+    ],
+    [
+        'pertanyaan' => 'Seberapa stres Anda merasa tentang beban kerja Anda?',
+        'skala' => '(1: Tidak Stres, 10: Sangat Stres)',
+        'id' => 'workload_stress',
+    ],
+    [
+        'pertanyaan' => 'Seberapa stres Anda merasa tentang hubungan sosial Anda?',
+        'skala' => '(1: Tidak Stres, 10: Sangat Stres)',
+        'id' => 'social_relationship_stress',
+    ],
+    [
+        'pertanyaan' => 'Seberapa stres Anda merasa tentang keuangan Anda?',
+        'skala' => '(1: Tidak Stres, 10: Sangat Stres)',
+        'id' => 'financial_stress',
+    ],
+    [
+        'pertanyaan' => 'Seberapa stres Anda merasa tentang kualitas tidur Anda?',
+        'skala' => '(1: Tidak Stres, 10: Sangat Stres)',
+        'id' => 'sleep_quality_stress',
+    ],
+    [
+        'pertanyaan' => 'Seberapa stres Anda merasa tentang keseimbangan antara pekerjaan dan kehidupan pribadi Anda?',
+        'skala' => '(1: Tidak Stres, 10: Sangat Stres)',
+        'id' => 'work_life_balance_stress',
+    ],
+];
 ?>
 <!doctype html>
 <html>
@@ -27,132 +65,26 @@ if (!session()->has('user')) {
                     kami memahami kondisi Anda dan memberikan saran yang lebih baik!</p>
             </div>
             <div class="bg-secondary p-10 rounded-lg shadow-lg">
-                <form class="space-y-8">
-                    <!-- Pertanyaan 1 -->
-                    <div>
-                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa stres Anda merasa tentang kesehatan
-                            fisik Anda?</h5>
-                        <p class="mb-4">(1: Tidak Stres, 10: Sangat Stres)</p>
-                        <div class="flex justify-start space-x-10">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <div class="flex items-center">
-                                    <input id="physical-health-stress-{{ $i }}" type="radio"
-                                        value="{{ $i }}" name="physical_health_stress"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="physical-health-stress-{{ $i }}"
-                                        class="ml-2 text-sm font-medium text-bold">{{ $i }}</label>
-                                </div>
-                            @endfor
+                <form class="space-y-8" action="/api/tingkat-stres" method="POST">
+                    @csrf
+                    <input type="hidden" name="email" value="{{ session('user')['email'] }}">
+                    @foreach ($listPertanyaan as $pertanyaan)
+                        <div>
+                            <h5 class="text-lg  font-medium text-bold mb-2">{{ $pertanyaan['pertanyaan'] }}</h5>
+                            <p class="mb-4">{{ $pertanyaan['skala'] }}</p>
+                            <div class="flex justify-start space-x-10">
+                                @for ($i = 1; $i <= 10; $i++)
+                                    <div class="flex items-center">
+                                        <input id="{{ $pertanyaan['id'] }}-{{ $i }}" type="radio"
+                                            value="{{ $i }}" name="{{ $pertanyaan['id'] }}"
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                                        <label for="{{ $pertanyaan['id'] }}-{{ $i }}"
+                                            class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
+                                    </div>
+                                @endfor
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Pertanyaan 2 -->
-                    <div>
-                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa stres Anda merasa tentang kesehatan
-                            mental Anda?</h5>
-                        <p class="mb-4">(1: Tidak Stres, 10: Sangat Stres)</p>
-                        <div class="flex justify-start space-x-10">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <div class="flex items-center">
-                                    <input id="mental-health-stress-{{ $i }}" type="radio"
-                                        value="{{ $i }}" name="mental_health_stress"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="mental-health-stress-{{ $i }}"
-                                        class="ml-2 text-sm font-medium text-bold">{{ $i }}</label>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
-
-                    <!-- Pertanyaan 3 -->
-                    <div>
-                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa stres Anda merasa tentang beban kerja
-                            Anda?</h5>
-                        <p class="mb-4">(1: Tidak Stres, 10: Sangat Stres)</p>
-                        <div class="flex justify-start space-x-10">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <div class="flex items-center">
-                                    <input id="workload-stress-{{ $i }}" type="radio"
-                                        value="{{ $i }}" name="workload_stress"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="workload-stress-{{ $i }}"
-                                        class="ml-2 text-sm font-medium text-bold">{{ $i }}</label>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
-
-                    <!-- Pertanyaan 4 -->
-                    <div>
-                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa stres Anda merasa tentang hubungan
-                            sosial Anda?</h5>
-                        <p class="mb-4">(1: Tidak Stres, 10: Sangat Stres)</p>
-                        <div class="flex justify-start space-x-10">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <div class="flex items-center">
-                                    <input id="social-relationship-stress-{{ $i }}" type="radio"
-                                        value="{{ $i }}" name="social_relationship_stress"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="social-relationship-stress-{{ $i }}"
-                                        class="ml-2 text-sm font-medium text-bold">{{ $i }}</label>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
-
-                    <!-- Pertanyaan 5 -->
-                    <div>
-                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa stres Anda merasa tentang keuangan Anda?
-                        </h5>
-                        <p class="mb-4">(1: Tidak Stres, 10: Sangat Stres)</p>
-                        <div class="flex justify-start space-x-10">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <div class="flex items-center">
-                                    <input id="financial-stress-{{ $i }}" type="radio"
-                                        value="{{ $i }}" name="financial_stress"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="financial-stress-{{ $i }}"
-                                        class="ml-2 text-sm font-medium text-bold">{{ $i }}</label>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
-
-                    <!-- Pertanyaan 6 -->
-                    <div>
-                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa stres Anda merasa tentang kualitas tidur
-                            Anda?</h5>
-                        <p class="mb-4">(1: Tidak Stres, 10: Sangat Stres)</p>
-                        <div class="flex justify-start space-x-10">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <div class="flex items-center">
-                                    <input id="sleep-quality-stress-{{ $i }}" type="radio"
-                                        value="{{ $i }}" name="sleep_quality_stress"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="sleep-quality-stress-{{ $i }}"
-                                        class="ml-2 text-sm font-medium text-bold">{{ $i }}</label>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
-
-                    <!-- Pertanyaan 7 -->
-                    <div>
-                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa stres Anda merasa tentang keseimbangan
-                            antara pekerjaan dan kehidupan pribadi Anda?</h5>
-                        <p class="mb-4">(1: Tidak Stres, 10: Sangat Stres)</p>
-                        <div class="flex justify-start space-x-10">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <div class="flex items-center">
-                                    <input id="work-life-balance-stress-{{ $i }}" type="radio"
-                                        value="{{ $i }}" name="work_life_balance_stress"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="work-life-balance-stress-{{ $i }}"
-                                        class="ml-2 text-sm font-medium text-bold">{{ $i }}</label>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
+                    @endforeach
 
                     <div class="w-full px-4 pt-16 text-center">
                         <button type="submit"
@@ -182,6 +114,10 @@ if (!session()->has('user')) {
                 navbar.classList.add('bg-transparent');
             }
         });
+
+        @if (session('error'))
+            alert("{{ session('error') }}");
+        @endif
     </script>
 
 </body>

@@ -6,7 +6,12 @@ if (!session()->has('user')) {
 
 if (!session()->has('quality_of_sleep')) {
     echo "<script>window.location.href = '/form-kualitas-tidur';</script>";
-    return view('formKlasifikasi');
+    return view('formKualitasTidur');
+}
+
+if (!session()->has('stress_level')) {
+    echo "<script>window.location.href = '/form-stress-level';</script>";
+    return view('formStressLevel');
 }
 
 ?>
@@ -110,10 +115,12 @@ if (!session()->has('quality_of_sleep')) {
                     <div class="w-full md:w-1/2 px-4 mb-6">
                         <label for="stress-level-range" class="block mb-2 text-sm font-medium text-bold">Tingkat
                             Stres</label>
-                        <input id="stress-level-range" type="range" min="0" max="10" value="0"
-                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                        <input id="stress-level-range" type="range" min="0" max="10"
+                            value="{{ session('stress_level') }}"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                            disabled>
                         <output id="range-stress-level"
-                            class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">0</output>
+                            class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">{{ session('stress_level') }}</output>
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-6">
                         <label for="duration-range" class="block mb-2 text-sm font-medium text-bold">Durasi

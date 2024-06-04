@@ -3,6 +3,26 @@ if (!session()->has('user')) {
     echo "<script>window.location.href = '/login';</script>";
     return view('login');
 }
+
+// get sleep quality from database
+$user = session('user');
+$emails = $user['email'];
+
+$sleepQuality = DB::table('users')->where('email', $emails)->value('score_sleep_quality');
+$sleepQuality = $sleepQuality * 10;
+$sleepQualityCategory = '';
+if ($sleepQuality > 80) {
+    $sleepQualityCategory = 'Sangat Baik';
+} elseif ($sleepQuality > 60) {
+    $sleepQualityCategory = 'Baik';
+} elseif ($sleepQuality > 40) {
+    $sleepQualityCategory = 'Cukup';
+} elseif ($sleepQuality > 20) {
+    $sleepQualityCategory = 'Buruk';
+} else {
+    $sleepQualityCategory = 'Sangat Buruk';
+}
+
 ?>
 <!doctype html>
 <html>
@@ -32,10 +52,12 @@ if (!session()->has('user')) {
                     class="bg-teal-50 dark:bg-gray-600 rounded-lg flex flex-col md:flex-row items-center justify-center p-4">
                     <div
                         class="w-16 h-16 rounded-full bg-teal-200 text-bold text-lg font-bold flex items-center justify-center mb-4 md:mb-0 md:mr-4">
-                        80%</div>
+                        {{ $sleepQuality }}%
+                    </div>
                     <div class="text-center md:text-left">
                         <h5 class="text-lg font-bold text-bold">Persentase Keseluruhan</h5>
-                        <p class="mt-2 text-sm text-primary">Kualitas tidur Anda tergolong baik.</p>
+                        <p class="mt-2 text-sm text-primary">Kualitas tidur Anda tergolong {{ $sleepQualityCategory }}.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -66,9 +88,9 @@ if (!session()->has('user')) {
                     <p class="mt-4 text-primary">Tidur adalah jendela kebahagiaan yang tak ternilai. Dengan teknologi
                         kami, kita dapat membantu mengenali gangguan yang menghalangi pintu itu terbuka lebar.</p>
                     <div class="flex justify-center md:justify-start mt-6 w-full md:w-auto order-3 md:order-none">
-                        <button href="#"
+                        <button
                             class="text-white bg-primary hover:bg-gray-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center">
-                            Mulai
+                            <a href="/klasifikasi-gangguan-tidur">Mulai</a>
                         </button>
                     </div>
                 </div>
@@ -175,8 +197,23 @@ if (!session()->has('user')) {
 
         document.addEventListener("DOMContentLoaded", function() {
             // Radial Chart Configuration
+            // var radialOptions = {
+            //     series: [80],
+            //     chart: {
+            //         height: 350,
+            //         type: 'radialBar',
+            //     },
+            //     plotOptions: {
+            //         radialBar: {
+            //             hollow: {
+            //                 size: '70%',
+            //             }
+            //         },
+            //     },
+            //     labels: ['Kualitas Tidur'],
+
             var radialOptions = {
-                series: [80],
+                series: [{{ $sleepQuality }}],
                 chart: {
                     height: 350,
                     type: 'radialBar',
@@ -189,6 +226,20 @@ if (!session()->has('user')) {
                     },
                 },
                 labels: ['Kualitas Tidur'],
+                colors: ['#1E3A8A'],
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        type: 'horizontal',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#F59E0B'],
+                        inverseColors: true,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100]
+                    }
+                }
             };
 
             // Column Chart Configuration
