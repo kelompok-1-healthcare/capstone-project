@@ -18,6 +18,11 @@ class User extends Model
         'name',
         'email',
         'password',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'score_sleep_quality',
+        'score_stress_quality',
     ];
 
     public function validate($request, $rules)

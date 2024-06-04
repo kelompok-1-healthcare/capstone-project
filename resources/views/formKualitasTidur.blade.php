@@ -3,6 +3,45 @@ if (!session()->has('user')) {
     echo "<script>window.location.href = '/login';</script>";
     return view('login');
 }
+
+$listPertanyaan = [
+    [
+        'pertanyaan' => 'Bagaimana Anda menilai kualitas tidur Anda dalam sebulan terakhir?',
+        'skala' => '(1: Sangat Buruk, 10: Sangat Baik)',
+        'id' => 'quality',
+    ],
+    [
+        'pertanyaan' => 'Berapa lama biasanya Anda butuh waktu untuk tertidur pada malam hari?',
+        'skala' => '(1: > 60 menit, 10: ≤ 15 menit)',
+        'id' => 'sleep_time',
+    ],
+    [
+        'pertanyaan' => 'Berapa lama biasanya Anda tidur pada malam hari?',
+        'skala' => '(1: < 5 jam, 10:> 7 jam)',
+        'id' => 'sleep_duration',
+    ],
+    [
+        'pertanyaan' => 'Seberapa sering Anda mengalami gangguan tidur seperti terbangun di malam hari?',
+        'skala' => '(1: ≥ 3 kali per minggu, 10: Tidak pernah)',
+        'id' => 'sleep_disturbance',
+    ],
+    [
+        'pertanyaan' => 'Berapa banyak waktu yang Anda habiskan di tempat tidur dibandingkan dengan waktu tidur sebenarnya?',
+        'skala' => '(1: < 65%, 10:> 85%)',
+        'id' => 'bed_time_ratio',
+    ],
+    [
+        'pertanyaan' => 'Seberapa sering Anda menggunakan obat tidur untuk membantu tidur?',
+        'skala' => '(1: ≥ 3 kali per minggu, 10: Tidak pernah)',
+        'id' => 'sleep_medication',
+    ],
+    [
+        'pertanyaan' => 'Seberapa sering Anda merasa kesulitan untuk tetap terjaga atau mengalami kantuk pada siang hari?',
+        'skala' => '(1: ≥ 3 kali per minggu, 10: Tidak pernah)',
+        'id' => 'daytime_sleepiness',
+    ],
+];
+
 ?>
 <!doctype html>
 <html>
@@ -10,6 +49,7 @@ if (!session()->has('user')) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -26,135 +66,30 @@ if (!session()->has('user')) {
                     pertanyaan-pertanyaan berikut dalam skala 1-10 untuk mengevaluasi tidur Anda. Mari kita mulai!</p>
             </div>
             <div class="bg-secondary p-10 rounded-lg shadow-lg">
-                <form class="space-y-8">
-                    <!-- Pertanyaan 1 -->
-                    <div>
-                        <h5 class="text-lg  font-medium text-bold mb-2">Bagaimana Anda menilai kualitas tidur Anda dalam
-                            sebulan terakhir?</h5>
-                        <p class="mb-4">(1: Sangat Buruk, 10: Sangat Baik)</p>
-                        <div class="flex justify-start space-x-10">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <div class="flex items-center">
-                                    <input id="quality-{{ $i }}" type="radio" value="{{ $i }}"
-                                        name="quality"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="quality-{{ $i }}"
-                                        class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
-                                </div>
-                            @endfor
+                {{-- kirimkan user_id juga --}}
+                <form class="space-y-8" action="/api/kualitas-tidur" method="POST">
+                    @csrf
+                    <input type="hidden" name="email" value="{{ session('user')['email'] }}">
+                    @foreach ($listPertanyaan as $pertanyaan)
+                        <div>
+                            <h5 class="text-lg  font-medium text-bold mb-2">{{ $pertanyaan['pertanyaan'] }}</h5>
+                            <p class="mb-4">{{ $pertanyaan['skala'] }}</p>
+                            <div class="flex justify-start space-x-10">
+                                @for ($i = 1; $i <= 10; $i++)
+                                    <div class="flex items-center">
+                                        <input id="{{ $pertanyaan['id'] }}-{{ $i }}" type="radio"
+                                            value="{{ $i }}" name="{{ $pertanyaan['id'] }}"
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                                        <label for="{{ $pertanyaan['id'] }}-{{ $i }}"
+                                            class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
+                                    </div>
+                                @endfor
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Pertanyaan 2 -->
-                    <div>
-                        <h5 class="text-lg  font-medium text-bold mb-2">Berapa lama biasanya Anda butuh waktu untuk
-                            tertidur pada malam hari?</h5>
-                        <p class="mb-4">(1: > 60 menit, 10: ≤ 15 menit)</p>
-                        <div class="flex justify-start space-x-10">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <div class="flex items-center">
-                                    <input id="sleep-time-{{ $i }}" type="radio"
-                                        value="{{ $i }}" name="sleep_time"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="sleep-time-{{ $i }}"
-                                        class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
-
-                    <!-- Pertanyaan 3 -->
-                    <div>
-                        <h5 class="text-lg  font-medium text-bold mb-2">Berapa lama biasanya Anda tidur pada malam hari?
-                        </h5>
-                        <p class="mb-4">(1: < 5 jam, 10:> 7 jam)</p>
-                        <div class="flex justify-start space-x-10">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <div class="flex items-center">
-                                    <input id="sleep-duration-{{ $i }}" type="radio"
-                                        value="{{ $i }}" name="sleep_duration"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="sleep-duration-{{ $i }}"
-                                        class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
-
-                    <!-- Pertanyaan 4 -->
-                    <div>
-                        <h5 class="text-lg font-medium text-bold mb-2">Seberapa sering Anda mengalami gangguan tidur
-                            seperti terbangun di malam hari?</h5>
-                        <p class="mb-4">(1: ≥ 3 kali per minggu, 10: Tidak pernah)</p>
-                        <div class="flex justify-start space-x-10">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <div class="flex items-center">
-                                    <input id="sleep-disturbance-{{ $i }}" type="radio"
-                                        value="{{ $i }}" name="sleep_disturbance"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="sleep-disturbance-{{ $i }}"
-                                        class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
-
-                    <!-- Pertanyaan 5 -->
-                    <div>
-                        <h5 class="text-lg  font-medium text-bold mb-2">Berapa banyak waktu yang Anda habiskan di tempat
-                            tidur dibandingkan dengan waktu tidur sebenarnya?</h5>
-                        <p class="mb-4">(1: < 65%, 10:> 85%)</p>
-                        <div class="flex justify-start space-x-10">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <div class="flex items-center">
-                                    <input id="bed-time-ratio-{{ $i }}" type="radio"
-                                        value="{{ $i }}" name="bed_time_ratio"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="bed-time-ratio-{{ $i }}"
-                                        class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
-
-                    <!-- Pertanyaan 6 -->
-                    <div>
-                        <h5 class="text-lg  font-medium text-bold mb-2">Seberapa sering Anda menggunakan obat tidur
-                            untuk membantu tidur?</h5>
-                        <p class="mb-4">(1: ≥ 3 kali per minggu, 10: Tidak pernah)</p>
-                        <div class="flex justify-start space-x-10">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <div class="flex items-center">
-                                    <input id="sleep-medication-{{ $i }}" type="radio"
-                                        value="{{ $i }}" name="sleep_medication"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="sleep-medication-{{ $i }}"
-                                        class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
-
-                    <!-- Pertanyaan 7 -->
-                    <div>
-                        <h5 class="text-lg  font-medium text-bold mb-2">Seberapa sering Anda merasa kesulitan untuk
-                            tetap terjaga atau mengalami kantuk pada siang hari?</h5>
-                        <p class="mb-4">(1: ≥ 3 kali per minggu, 10: Tidak pernah)</p>
-                        <div class="flex justify-start space-x-10">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <div class="flex items-center">
-                                    <input id="daytime-sleepiness-{{ $i }}" type="radio"
-                                        value="{{ $i }}" name="daytime_sleepiness"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                    <label for="daytime-sleepiness-{{ $i }}"
-                                        class="ml-2 text-sm  font-medium text-bold">{{ $i }}</label>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
+                    @endforeach
 
                     <div class="w-full px-4 pt-16 text-center">
-                        <button type="submit"
+                        <button id="kirimKlasifikasi" type="submit"
                             class="w-1/2 md:w-1/3 bg-primary text-white py-2 px-4 rounded-lg hover:bg-gray-500 focus:ring-4 focus:outline-none">
                             Kirim
                         </button>

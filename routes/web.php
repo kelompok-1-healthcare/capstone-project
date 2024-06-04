@@ -30,3 +30,5 @@ Route::get('/form-tingkat-stres', [GeneralController::class, 'formTingkatStres_p
 Route::post('/api/register', [GeneralController::class, 'register_process']);
 Route::post('/api/login', [GeneralController::class, 'login_process']);
 Route::get('/api/logout', [GeneralController::class, 'logout_process']);
+Route::post('/api/kualitas-tidur', [GeneralController::class, 'kualitas_tidur_process']);
+Route::post('/api/tingkat-stres', [GeneralController::class, 'tingkat_stres_process']);

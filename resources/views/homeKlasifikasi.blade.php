@@ -27,7 +27,7 @@ if (!session()->has('user')) {
                     lebih baik dan hidup yang lebih sehat!</p>
                 <img src="{{ asset('assets/klasifikasi-pic.svg') }}" alt="Sleeping Illustration"
                     class="w-1/2 md:w-1/3 object-contain mb-16">
-                <a href="/form-klasifikasi-gangguan-tidur"
+                <a href="/form-kualitas-tidur"
                     class="w-1/2 md:w-1/3 bg-primary text-white py-2 px-4 rounded-lg hover:bg-gray-500 focus:ring-4 focus:outline-none">Mulai
                     Sekarang</a>
             </div>

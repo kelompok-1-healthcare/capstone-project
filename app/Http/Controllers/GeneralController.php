@@ -123,7 +123,7 @@ class GeneralController extends Controller
         return redirect('/login');
     }
 
-    function hitung_BMI($berat_badan, $tinggi_badan)
+    public function hitung_BMI($berat_badan, $tinggi_badan)
     {
         // Konversi tinggi badan ke meter
         $tinggi_badan_meter = $tinggi_badan / 100;
@@ -131,6 +131,53 @@ class GeneralController extends Controller
         // Hitung BMI
         $bmi = $berat_badan / ($tinggi_badan_meter * $tinggi_badan_meter);
 
-        return $bmi;
+        if ($bmi < 18.5) {
+            return "Underweight";
+        } else if ($bmi >= 18.5 && $bmi <= 24.9) {
+            return "Normal weight";
+        } else if ($bmi >= 25 && $bmi <= 29.9) {
+            return "Overweight";
+        } else if ($bmi >= 30) {
+            return "Obesity";
+        }
+    }
+
+    public function calculate_quality_of_sleep($answers)
+    {
+        if (count($answers) <= 7) {
+            return "Please fill all fields";
+        }
+
+        $score = ($answers['quality'] + $answers['sleep_time'] + $answers['sleep_duration'] + $answers['sleep_disturbance'] + $answers['bed_time_ratio'] + $answers['sleep_medication'] + $answers['daytime_sleepiness']) / 7;
+
+        session(['quality_of_sleep' => round($score, 1)]);
+    }
+
+    public function calculate_stress_level($answers)
+    {
+        if (count($answers) != 7) {
+            return "Please fill all fields";
+        }
+
+        $score = array_sum($answers) / count($answers);
+        return $score;
+    }
+
+    public function kualitas_tidur_process(Request $request)
+    {
+        $answers = $request->all();
+        $this->calculate_quality_of_sleep($answers);
+
+
+        $user = session('user');
+        $user->score_sleep_quality = session('quality_of_sleep');
+        $user->save();
+        session(['user' => $user]);
+
+        return redirect('/form-tingkat-stres')->with('success', 'Kualitas tidur berhasil dihitung', 'score', $this->calculate_quality_of_sleep($answers));
+    }
+
+    public function tingkat_stres_process(Request $request)
+    {
     }
 }
