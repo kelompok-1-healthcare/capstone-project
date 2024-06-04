@@ -116,6 +116,15 @@ $perPage = 6;
 $offset = ($page - 1) * $perPage;
 $limit = $offset + $perPage;
 $artikel = array_slice($listArtikel, $offset, $perPage);
+
+$searchValue = $_GET['search'] ?? '';
+
+if ($searchValue) {
+
+    $artikel = array_filter($listArtikel, function ($item) use ($searchValue) {
+        return strpos(strtolower($item['judul']), strtolower($searchValue)) !== false;
+    });
+}
 ?>
 
 <!doctype html>
@@ -139,8 +148,8 @@ $artikel = array_slice($listArtikel, $offset, $perPage);
             <form class="max-w-xl mx-auto flex items-center">
                 <input type="search" id="default-search"
                     class="block w-full py-2 px-4 text-sm text-gray-900 placeholder-gray-500 border bg-gray-200 border-primary rounded-l-lg focus:outline-none focus:ring-primary focus:border-primary transition-colors duration-300"
-                    placeholder="Cari Artikel" required />
-                <button type="submit"
+                    placeholder="Cari Artikel" required name="search" value="<?php echo $searchValue; ?>" />
+                <button type="submit" id = "search-button"
                     class="bg-primary text-white py-2 px-4 rounded-r-lg hover:bg-gray-500 focus:outline-none focus:ring-4 transition-colors duration-300">Cari</button>
             </form>
 
@@ -219,9 +228,6 @@ $artikel = array_slice($listArtikel, $offset, $perPage);
     {{-- footer --}}
     @include('generalFooter')
 
-
-
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         window.addEventListener('scroll', function() {
@@ -235,6 +241,11 @@ $artikel = array_slice($listArtikel, $offset, $perPage);
                 navbar.classList.remove('shadow-md');
                 navbar.classList.add('bg-transparent');
             }
+        });
+
+        $('#search-button').click(function() {
+            var searchValue = $('#default-search').val();
+            window.location.href = '/artikel?search=' + searchValue;
         });
     </script>
 
