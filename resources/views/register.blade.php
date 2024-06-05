@@ -111,7 +111,7 @@ $currentPage = basename($_SERVER['REQUEST_URI']);
     </div>
 
     <div id="errorModal" tabindex="-1" aria-hidden="true" {{-- buat ada ditengah layar --}}
-        class="absolute top-1/4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md h-modal">
+        class="hidden absolute top-1/4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md h-modal">
         <!-- Modal content -->
         <div class="relative px-4 py-20 text-center bg-white rounded-lg shadow dark:bg-gray-800 ">
             <div
@@ -143,8 +143,10 @@ $currentPage = basename($_SERVER['REQUEST_URI']);
     <script>
         @if (session('success'))
             // TODO
+            alert('Registration Success');
         @elseif (session('error'))
             // TODO
+            alert('Registration Failed : ' + '{{ session('error') }}');
         @endif
     </script>
 
