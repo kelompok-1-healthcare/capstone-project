@@ -34,13 +34,8 @@
                             </li>
                             <li>
                                 <div class="block px-4 py-2 text-sm text-slate-100 hover:bg-gray-100 hover:text-black cursor-pointer"
-                                    id="riwayatTidur">
-                                    Riwayat Tidur</div>
-                            </li>
-                            <li>
-                                <div class="block px-4 py-2 text-sm text-slate-100 hover:bg-gray-100 hover:text-black cursor-pointer"
                                     id="kualitasTidur">
-                                    Cek Kualitas Tidur</div>
+                                    Cek Gangguan Tidur</div>
                             </li>
                             <li>
                                 <div class="block px-4 py-2 text-sm text-slate-100 hover:bg-gray-100 hover:text-black cursor-pointer"
@@ -89,14 +84,11 @@
     });
 
     document.getElementById('Profile').addEventListener('click', function() {
-        window.location.href = '/profile';
-    });
-
-    document.getElementById('riwayatTidur').addEventListener('click', function() {
-        window.location.href = '/riwayat-tidur';
+        // window.location.href = '/profile';
+        alert('Coming soon!');
     });
 
     document.getElementById('kualitasTidur').addEventListener('click', function() {
-        window.location.href = '/cek-kualitas-tidur';
+        window.location.href = '/klasifikasi-gangguan-tidur';
     });
 </script>

@@ -229,4 +229,23 @@ class GeneralController extends Controller
 
         return redirect('/form-klasifikasi-gangguan-tidur')->with('success', 'Tingkat stres berhasil dihitung', 'score', $this->calculate_stress_level($answers));
     }
+
+    public function klasifikasi_gangguan_tidur_process(Request $request)
+    {
+        $answers = $request->all();
+
+        $fields = ['age', 'occupation', 'height', 'weight', 'tekananDarah', 'durationOfSleep', 'systolic', 'diastolic'];
+        foreach ($fields as $field) {
+            if (!isset($answers[$field])) {
+                return redirect('/form-klasifikasi-gangguan-tidur')->with('error', 'Please fill all fields');
+            }
+        }
+
+        // hitung bmi
+        $bmi = $this->hitung_BMI($answers['weight'], $answers['height']);
+        echo "<pre>";
+        print_r($answers);
+        print_r($bmi);
+        echo "</pre>";
+    }
 }
