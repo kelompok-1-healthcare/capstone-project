@@ -91,7 +91,7 @@ $listPertanyaan = [
                     <div class="w-full px-4 pt-16 text-center">
                         <button id="kirimKlasifikasi" type="submit"
                             class="w-1/2 md:w-1/3 bg-primary text-white py-2 px-4 rounded-lg hover:bg-gray-500 focus:ring-4 focus:outline-none">
-                            Kirim
+                            Selanjutnya
                         </button>
                     </div>
                 </form>

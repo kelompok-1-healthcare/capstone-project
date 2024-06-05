@@ -3,7 +3,7 @@
         <div
             class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4 bg-transparent transition-all duration-500 border-b border-transparent dark:bg-gray-900">
             <div class="left">
-                <a class="flex items-center space-x-3">
+                <a href="/home" class="flex items-center space-x-3">
                     <img src={{ asset('assets/logo.svg') }} class="h-8" alt="Somno Logo" draggable="false" />
                 </a>
             </div>
@@ -57,7 +57,7 @@
     <nav id="navbar" class="fixed top-0 w-full z-10">
         <div
             class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4 bg-transparent transition-all duration-500 border-b border-transparent dark:bg-gray-900">
-            <a class="flex items-center space-x-3 rtl:space-x-reverse">
+            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src={{ asset('assets/logo.svg') }} class="h-8" alt="Somno Logo" draggable="false" />
             </a>
             <div class="flex items-center space-x-6 rtl:space-x-reverse">
