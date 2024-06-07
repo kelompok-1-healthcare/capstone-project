@@ -42,7 +42,7 @@ if ($sleepQuality > 80) {
         <div class="container mx-auto max-w-screen-xl p-4 flex flex-col md:flex-row items-center justify-between w-full">
             <!-- Left side -->
             <div
-                class="w-full md:w-1/3 bg-white rounded-xl shadow dark:bg-gray-800 flex flex-col items-center justify-center p-4 md:p-10 mb-4 md:mb-0 md:mr-4">
+                class="w-full md:w-1/2 bg-white rounded-xl shadow dark:bg-gray-800 flex flex-col items-center justify-center p-4 md:p-10 mb-4 md:mb-0 md:mr-4">
                 <!-- Radial chart container -->
                 <div class="flex items-center justify-center mb-10">
                     <div class="w-full h-auto" id="radial-chart"></div>
@@ -63,12 +63,20 @@ if ($sleepQuality > 80) {
             </div>
 
             <!-- Right side -->
-            <div
-                class="w-full md:w-2/3 bg-white rounded-xl shadow dark:bg-gray-800 flex flex-col items-center justify-center p-4 md:p-12">
-                <!-- Column chart container -->
-                <div class="w-full h-auto">
-                    <h5 class="text-2xl text-center font-bold text-bold mb-2">Tingkat Stres</h5>
-                    <div id="column-charts" class="text-lg"></div>
+            <div class="w-full md:w-1/2 bg-white rounded-xl shadow dark:bg-gray-800 flex flex-col items-center justify-center p-4 md:p-10 mb-4 md:mb-0 md:mr-4">
+                <!-- Radial chart container -->
+                <div class="flex items-center justify-center mb-10">
+                    <div class="w-full h-auto" id="stress-radial-chart"></div>
+                </div>
+                <!-- Persentase Keseluruhan -->
+                <div class="bg-teal-50 dark:bg-gray-600 rounded-lg flex flex-col md:flex-row items-center justify-center p-4">
+                    <div class="w-16 h-16 rounded-full bg-teal-200 text-bold text-lg font-bold flex items-center justify-center mb-4 md:mb-0 md:mr-4">
+                        <span id="stressPercentage">70%</span>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h5 class="text-lg font-bold text-bold">Persentase Keseluruhan</h5>
+                        <p class="mt-2 text-sm text-primary">Tingkat stres Anda tergolong tinggi.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -196,22 +204,7 @@ if ($sleepQuality > 80) {
         });
 
         document.addEventListener("DOMContentLoaded", function() {
-            // Radial Chart Configuration
-            // var radialOptions = {
-            //     series: [80],
-            //     chart: {
-            //         height: 350,
-            //         type: 'radialBar',
-            //     },
-            //     plotOptions: {
-            //         radialBar: {
-            //             hollow: {
-            //                 size: '70%',
-            //             }
-            //         },
-            //     },
-            //     labels: ['Kualitas Tidur'],
-
+            //Sleep Quality
             var radialOptions = {
                 series: [{{ $sleepQuality }}],
                 chart: {
@@ -226,14 +219,14 @@ if ($sleepQuality > 80) {
                     },
                 },
                 labels: ['Kualitas Tidur'],
-                colors: ['#1E3A8A'],
+                colors: ['#025F80'],
                 fill: {
                     type: 'gradient',
                     gradient: {
                         shade: 'dark',
                         type: 'horizontal',
                         shadeIntensity: 0.5,
-                        gradientToColors: ['#F59E0B'],
+                        gradientToColors: ['#B9D6DB'],
                         inverseColors: true,
                         opacityFrom: 1,
                         opacityTo: 1,
@@ -241,62 +234,46 @@ if ($sleepQuality > 80) {
                     }
                 }
             };
-
-            // Column Chart Configuration
-            var columnOptions = {
-                series: [{
-                    name: 'Tingkat Stres',
-                    data: [2, 5, 3, 7, 10, 6, 4]
-                }],
+            
+            // Static Stress Level 
+            var stressRadialOptions = {
+                series: [70], 
                 chart: {
-                    type: 'bar',
-                    height: 350
+                    height: 350,
+                    type: 'radialBar',
                 },
                 plotOptions: {
-                    bar: {
-                        horizontal: false,
-                        columnWidth: '55%',
-                        endingShape: 'rounded',
-                        distributed: true, // Enable distributed colors
+                    radialBar: {
+                        hollow: {
+                            size: '70%',
+                        }
                     },
                 },
-                colors: ['#1E3A8A', '#DC2626', '#16A34A', '#F59E0B', '#7C3AED', '#6366F1', '#DB2777'],
-                dataLabels: {
-                    enabled: false
-                },
-                xaxis: {
-                    categories: [
-                        'Tidur',
-                        'Keseimbangan Hidup',
-                        'Kesehatan Fisik',
-                        'Kesehatan Mental',
-                        'Beban Kerja',
-                        'Hubungan Sosial',
-                        'Keuangan'
-                    ],
-                    labels: {
-                        show: false // Hide x-axis labels
-                    }
-                },
+                labels: ['Tingkat Stres'],
+                colors: ['#025F80'],
                 fill: {
-                    opacity: 1
-                },
-                tooltip: {
-                    y: {
-                        formatter: function(val) {
-                            return val;
-                        }
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        type: 'horizontal',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#B9D6DB'],
+                        inverseColors: true,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100]
                     }
                 }
             };
+            
 
             // Render Radial Chart
             var radialChart = new ApexCharts(document.querySelector("#radial-chart"), radialOptions);
             radialChart.render();
 
-            // Render Column Chart
-            var columnChart = new ApexCharts(document.querySelector("#column-charts"), columnOptions);
-            columnChart.render();
+            // Render Stress Level Radial Chart
+            var stressRadialChart = new ApexCharts(document.querySelector("#stress-radial-chart"), stressRadialOptions);
+            stressRadialChart.render();
         });
     </script>
 </body>

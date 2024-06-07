@@ -1,66 +1,116 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## README: Aplikasi Web Somno
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Gambaran Umum
+Somno adalah platform AI berbasis web yang memanfaatkan machine learning untuk menganalisis data tidur pengguna dan memberikan diagnosis gangguan tidur yang akurat. Website ini juga menawarkan rekomendasi tindak lanjut dan konten edukatif seperti artikel untuk membantu pengguna memahami dan mengatasi masalah tidur mereka.
 
-## About Laravel
+### Teknologi yang Digunakan
+- **Framework Backend**: Flask
+- **Framework Frontend**: Laravel
+- **Stilisasi**: Tailwind CSS, Flowbite
+- **Kontainerisasi**: Docker
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Prasyarat
+Sebelum mengatur proyek ini, pastikan Anda telah menginstal:
+- Docker
+- Docker Compose
+- Composer (untuk Laravel)
+- Python dan pip (untuk Flask)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Instalasi
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### 1. Clone Repository
+```bash
+git clone https://github.com/yourusername/somno.git
+cd somno
+```
 
-## Learning Laravel
+#### 2. Setup Backend (Flask)
+```bash
+cd backend
+pip install -r requirements.txt
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### 3. Setup Frontend (Laravel)
+```bash
+cd ../frontend
+composer install
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### 4. Build dan Jalankan Kontainer
+```bash
+docker-compose up --build
+```
+Perintah ini akan membangun dan menjalankan kontainer Docker untuk layanan backend dan frontend.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Penggunaan
+Setelah kontainer berjalan, Anda dapat mengakses aplikasi di `http://localhost`.
 
-## Laravel Sponsors
+#### Mengakses Frontend
+Buka browser Anda dan arahkan ke `http://localhost` untuk mengakses aplikasi frontend Laravel.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### Mengakses Backend
+API backend Flask dapat diakses di `http://localhost:5000`.
 
-### Premium Partners
+### Pengembangan Frontend
+Untuk bekerja pada frontend Laravel:
+```bash
+cd frontend
+php artisan serve
+```
+Perintah ini akan memulai server pengembangan dengan live reloading.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### Pengembangan Backend
+Untuk bekerja pada backend Flask:
+```bash
+cd backend
+flask run
+```
+Perintah ini akan memulai server pengembangan Flask.
 
-## Contributing
+### Styling dengan Tailwind CSS dan Flowbite
+Tailwind CSS dan Flowbite digunakan untuk stilisasi dan komponen UI. Untuk menyesuaikan gaya, Anda dapat mengedit file CSS dan template yang ada di dalam folder `resources`.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Menjalankan Tes
+Untuk menjalankan tes pada frontend Laravel:
+```bash
+cd frontend
+php artisan test
+```
 
-## Code of Conduct
+Untuk menjalankan tes pada backend Flask:
+```bash
+cd backend
+pytest
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Konfigurasi Tambahan
 
-## Security Vulnerabilities
+#### Migrasi Database (Laravel)
+Untuk menjalankan migrasi database untuk aplikasi Laravel:
+```bash
+cd frontend
+php artisan migrate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### Mengelola Kontainer Docker
+Untuk menghentikan kontainer Docker:
+```bash
+docker-compose down
+```
 
-## License
+Untuk membangun ulang kontainer Docker setelah membuat perubahan:
+```bash
+docker-compose up --build
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+### Anggota Kelompok GitHub:
+- Ade Pertiwi
+- Aprodhita Nanda
+- Sri Hidayanti
+- Jonathan Wilbert
+- Stasia Olfiani
+
+### Informasi Tambahan
+Proyek ini adalah final project dari program Kampus Merdeka Studi Independen Skilvul dan IBM yaitu IBM Skillsbuild For AI & Cybersecurity.
