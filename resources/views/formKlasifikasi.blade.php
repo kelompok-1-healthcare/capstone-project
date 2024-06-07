@@ -41,7 +41,7 @@ if (!session()->has('stress_level')) {
                 <form class="flex flex-wrap justify-center mt-6 mb-6" action="/api/klasifikasi-gangguan-tidur"
                     method="POST">
                     @csrf
-                    <div class="w-full md:w-1/2 px-4 mb-4">
+                    <div class="w-full md:w-1/2 px-4 mb-8">
                         <label for="gender" class="block mb-2 text-sm font-medium text-bold">Jenis Kelamin</label>
                         <select id="gender" name="gender"
                             class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -50,13 +50,13 @@ if (!session()->has('stress_level')) {
                             <option>Wanita</option>
                         </select>
                     </div>
-                    <div class="w-full md:w-1/2 px-4 mb-4">
+                    <div class="w-full md:w-1/2 px-4 mb-8">
                         <label for="number-input" class="block mb-2 text-sm font-medium text-bold">Umur</label>
                         <input type="number" id="number-input" aria-describedby="helper-text-explanation"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Masukan umur anda" min="0" max="120" required name="age" />
                     </div>
-                    <div class="w-full md:w-1/2 px-4 mb-4">
+                    <div class="w-full md:w-1/2 px-4 mb-8">
                         <label for="occupation" class="block mb-2 text-sm font-medium text-bold">Pekerjaan</label>
                         <select id="occupation" name="occupation"
                             class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -75,7 +75,7 @@ if (!session()->has('stress_level')) {
 
                         </select>
                     </div>
-                    <div class="w-full md:w-1/2 px-4 mb-4 flex space-x-4">
+                    <div class="w-full md:w-1/2 px-4 mb-8 flex space-x-4">
                         <div class="w-1/2">
                             <label for="height-input" class="block mb-2 text-sm font-medium text-bold">Tinggi Badan
                                 (cm)</label>
@@ -93,13 +93,39 @@ if (!session()->has('stress_level')) {
                                 name="weight" />
                         </div>
                     </div>
-                    <div class="w-full md:w-1/2 px-4 mb-6">
-                        <label for="input5" class="block mb-2 text-sm font-medium text-bold">Tekanan darah</label>
-                        <input type="text" id="input5" name="tekananDarah"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder=".../...mmHg">
+                    <div class="w-full md:w-1/2 px-4 mb-8">
+                        <label for="tekananDarahSistolik" class="block mb-2 text-sm font-medium text-bold">Tekanan Darah</label>
+                        <div class="flex items-center">
+                            <input type="number" id="tekananDarahSistolik" name="tekananDarahSistolik" min="60" max="250"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 mr-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Sistolik">
+                            <span class="text-gray-900 text-sm dark:text-white">/</span>
+                            <input type="number" id="tekananDarahDiastolik" name="tekananDarahDiastolik" min="40" max="150"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 ml-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Diastolik">
+                            <span class="text-gray-900 text-sm ml-2 dark:text-white">mmHg</span>
+                        </div>
+                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Masukkan angka sistolik dan diastolik. Contoh: 120/80 mmHg</p>
                     </div>
-                    <div class="w-full md:w-1/2 px-4 mb-6">
+                    <div class="w-full md:w-1/2 px-4 mb-8">
+                        <label for="heart-rate-input" class="block mb-2 text-sm font-medium text-bold">Denyut Jantung (bpm)</label>
+                        <input type="number" id="heart-rate-input" name="heartRate" min="30" max="200"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Masukkan denyut jantung">
+                    </div>
+                    <div class="w-full md:w-1/2 px-4 mb-8">
+                        <label for="dailySteps" class="block mb-2 text-sm font-medium text-bold">Langkah Harian</label>
+                        <input type="number" id="dailySteps" name="dailySteps" min="0" max="100000"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Masukkan jumlah langkah harian anda">
+                    </div>
+                    <div class="w-full md:w-1/2 px-4 mb-8">
+                        <label for="physicalActivity" class="block mb-2 text-sm font-medium text-bold">Aktivitas Fisik (menit/hari)</label>
+                        <input type="number" id="physicalActivity" name="physicalActivity" min="0" max="1440"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Masukkan jumlah menit per hari">
+                    </div>
+                    <div class="w-full md:w-1/2 px-4 mb-8">
                         <label for="sleep-quality-range" class="block mb-2 text-sm font-medium text-bold">Kualitas
                             tidur</label>
                         <input id="sleep-quality-range" type="range" min="0" max="10"
@@ -109,7 +135,7 @@ if (!session()->has('stress_level')) {
                         <output id="range-sleep-quality"
                             class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">{{ session('quality_of_sleep') }}</output>
                     </div>
-                    <div class="w-full md:w-1/2 px-4 mb-6">
+                    <div class="w-full md:w-1/2 px-4 mb-8">
                         <label for="stress-level-range" class="block mb-2 text-sm font-medium text-bold">Tingkat
                             Stres</label>
                         <input id="stress-level-range" type="range" min="0" max="10" name="stress_level"
@@ -119,33 +145,29 @@ if (!session()->has('stress_level')) {
                         <output id="range-stress-level"
                             class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">{{ session('stress_level') }}</output>
                     </div>
-                    <div class="w-full md:w-1/2 px-4 mb-6">
-                        <label for="duration-range" class="block mb-2 text-sm font-medium text-bold">Durasi
-                            Tidur</label>
-                        <input id="duration-range" type="range" min="0" max="10" value="0"
-                            name="durationOfSleep"
-                            class="w-full h-2 bg-gray-200 rounded-lg
-                            appearance-none cursor-pointer dark:bg-gray-700">
-                        <output id="range-duration"
-                            class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">0</output>
-                    </div>
-                    <div class="w-full md:w-1/2 px-4 mb-6">
+                    <div class="w-full md:w-1/2 px-4 mb-8">
                         <label for="systolic-range" class="block mb-2 text-sm font-medium text-bold">Tekanan saat
                             jantung memompa darah</label>
-                        <input id="systolic-range" type="range" min="0" max="10" value="0"
+                        <input id="systolic-range" type="range" min="60" max="250" value="0"
                             name="systolic"
                             class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                         <output id="range-systolic"
                             class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">0</output>
                     </div>
-                    <div class="w-full md:w-1/2 px-4 mb-6">
+                    <div class="w-full md:w-1/2 px-4 mb-8">
                         <label for="diastolic-range" class="block mb-2 text-sm font-medium text-bold">Tekanan saat
                             jantung berelaksasi sebelum kembali memompa darah</label>
-                        <input id="diastolic-range" type="range" min="0" max="10" value="0"
+                        <input id="diastolic-range" type="range" min="40" max="150" value="0"
                             name="diastolic"
                             class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                         <output id="range-diastolic"
                             class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">0</output>
+                    </div>
+                    <div class="w-full md:w-1/2 px-4 mb-8">
+                        <label for="duration-range" class="block mb-2 text-sm font-medium text-bold text-center">Durasi Tidur (jam)</label>
+                        <input id="duration-range" type="range" min="0" max="10" step="0.1" value="0" name="durationOfSleep"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                        <output id="range-duration" class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">0.0</output>
                     </div>
                     <div class="w-full px-4 mt-10 text-center">
                         <button type="submit"
