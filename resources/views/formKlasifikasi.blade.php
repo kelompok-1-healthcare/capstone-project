@@ -146,24 +146,6 @@ if (!session()->has('stress_level')) {
                             class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">{{ session('stress_level') }}</output>
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-8">
-                        <label for="systolic-range" class="block mb-2 text-sm font-medium text-bold">Tekanan saat
-                            jantung memompa darah</label>
-                        <input id="systolic-range" type="range" min="60" max="250" value="0"
-                            name="systolic"
-                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-                        <output id="range-systolic"
-                            class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">0</output>
-                    </div>
-                    <div class="w-full md:w-1/2 px-4 mb-8">
-                        <label for="diastolic-range" class="block mb-2 text-sm font-medium text-bold">Tekanan saat
-                            jantung berelaksasi sebelum kembali memompa darah</label>
-                        <input id="diastolic-range" type="range" min="40" max="150" value="0"
-                            name="diastolic"
-                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-                        <output id="range-diastolic"
-                            class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">0</output>
-                    </div>
-                    <div class="w-full md:w-1/2 px-4 mb-8">
                         <label for="duration-range" class="block mb-2 text-sm font-medium text-bold text-center">Durasi Tidur (jam)</label>
                         <input id="duration-range" type="range" min="0" max="10" step="0.1" value="0" name="durationOfSleep"
                             class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
@@ -238,20 +220,6 @@ if (!session()->has('stress_level')) {
         const rangeDuration = document.getElementById('range-duration');
         durationRange.addEventListener('input', function() {
             rangeDuration.textContent = durationRange.value;
-        });
-
-        // systolic
-        const systolicRange = document.getElementById('systolic-range');
-        const rangeSystolic = document.getElementById('range-systolic');
-        systolicRange.addEventListener('input', function() {
-            rangeSystolic.textContent = systolicRange.value;
-        });
-
-        // diastolic
-        const diastolicRange = document.getElementById('diastolic-range');
-        const rangeDiastolic = document.getElementById('range-diastolic');
-        diastolicRange.addEventListener('input', function() {
-            rangeDiastolic.textContent = diastolicRange.value;
         });
     </script>
 </body>
