@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use App\Models\User;
 
 class GeneralController extends Controller
@@ -234,18 +235,100 @@ class GeneralController extends Controller
     {
         $answers = $request->all();
 
-        $fields = ['age', 'occupation', 'height', 'weight', 'tekananDarah', 'durationOfSleep', 'systolic', 'diastolic'];
+        $fields = ['gender', 'age', 'occupation', 'height', 'weight', 'tekananDarah', 'durationOfSleep', 'systolic', 'diastolic'];
         foreach ($fields as $field) {
             if (!isset($answers[$field])) {
                 return redirect('/form-klasifikasi-gangguan-tidur')->with('error', 'Please fill all fields');
             }
         }
 
-        // hitung bmi
         $bmi = $this->hitung_BMI($answers['weight'], $answers['height']);
-        echo "<pre>";
-        print_r($answers);
-        print_r($bmi);
-        echo "</pre>";
+
+        $gender = $answers['gender'] == "Male" ? 0 : 1;
+
+        $occupation = 0;
+        switch ($answers['occupation']) {
+            case 'Software Engineer':
+                $occupation = 9;
+                break;
+            case 'Dokter':
+                $occupation = 1;
+                break;
+            case 'Sales':
+                $occupation = 6;
+                break;
+            case 'Guru':
+                $occupation = 10;
+                break;
+            case 'Perawat':
+                $occupation = 5;
+                break;
+            case 'Engineer':
+                $occupation = 2;
+                break;
+            case 'Akuntan':
+                $occupation = 0;
+                break;
+            case 'Scientist':
+                $occupation = 8;
+                break;
+            case 'Pengacara':
+                $occupation = 3;
+                break;
+            case 'Salesperson':
+                $occupation = 7;
+                break;
+            case 'Manager':
+                $occupation = 4;
+                break;
+        }
+
+        switch ($bmi) {
+            case 'Underweight':
+                $bmi = 0;
+                break;
+            case 'Normal weight':
+                $bmi = 1;
+                break;
+            case 'Overweight':
+                $bmi = 2;
+                break;
+            case 'Obesity':
+                $bmi = 3;
+                break;
+        }
+
+        $maxAttempts = 3;
+        $attempt = 0;
+
+        // echo "<pre>";
+        // print_r($gender);
+        // print_r($answers['age']);
+        // print_r($occupation);
+        // print_r($answers['durationOfSleep']);
+        // print_r(session('quality_of_sleep'));
+        // print_r(session('stress_level'));
+        // print_r($bmi);
+        // print_r($answers['tekananDarah']);
+        // echo "</pre>";
+
+        echo "<script>console.log(" . $gender . ", " . $answers['age'] . ", " . $occupation . ", " . $answers['durationOfSleep'] . ", " . session('quality_of_sleep') . ", " . session('stress_level') . ", " . $bmi . ", " . $answers['tekananDarah'] . ");</script>";
+
+        $url = env('API_FLASK_URL') . '/predict';
+        $data = [
+            'features' => [
+                $gender, $answers['age'], $occupation, $answers['durationOfSleep'], session('quality_of_sleep'), session('stress_level'), $bmi, $answers['tekananDarah']
+            ]
+        ];
+
+        foreach ($data['features'] as $key => $value) {
+            $data['features'][$key] = (float) $value;
+        }
+
+        $response = Http::timeout(60)->post($url, $data);
+
+        $result = $response->json();
+
+        return redirect('/hasil-klasifikasi-gangguan-tidur')->with('result', $result);
     }
 }

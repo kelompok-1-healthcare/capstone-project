@@ -61,25 +61,18 @@ if (!session()->has('stress_level')) {
                         <select id="occupation" name="occupation"
                             class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option disabled selected hidden>Pilih pekerjaan</option>
-                            <option value="arsitek">Arsitek</option>
+                            <option value="software engineer">Software Engineer</option>
                             <option value="dokter">Dokter</option>
-                            <option value="pengacara">Pengacara</option>
+                            <option value="sales">Sales</option>
                             <option value="guru">Guru</option>
-                            <option value="insinyur">Insinyur</option>
                             <option value="perawat">Perawat</option>
-                            <option value="programmer">Programmer</option>
-                            <option value="konsultan">Konsultan</option>
-                            <option value="marketing">Marketing</option>
-                            <option value="pengusaha">Pengusaha</option>
-                            <option value="pekerja_sosial">Pekerja Sosial</option>
-                            <option value="ahli_it">Ahli IT</option>
-                            <option value="psikolog">Psikolog</option>
-                            <option value="penyanyi">Penyanyi</option>
-                            <option value="aktor_aktris">Aktor/Aktris</option>
-                            <option value="seniman">Seniman</option>
-                            <option value="peneliti">Peneliti</option>
-                            <option value="analis_keuangan">Analis Keuangan</option>
-                            <option value="lainnya">Lainnya</option>
+                            <option value="engineer">Engineer</option>
+                            <option value="akuntan">Akuntan</option>
+                            <option value="scientist">Scientist</option>
+                            <option value="pengacara">Pengacara</option>
+                            <option value="salesperson">Salesperson</option>
+                            <option value="manager">Manager</option>
+
                         </select>
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-4 flex space-x-4">
@@ -119,8 +112,8 @@ if (!session()->has('stress_level')) {
                     <div class="w-full md:w-1/2 px-4 mb-6">
                         <label for="stress-level-range" class="block mb-2 text-sm font-medium text-bold">Tingkat
                             Stres</label>
-                        <input id="stress-level-range" type="range" min="0" max="10"
-                            name="stress_level" value="{{ session('stress_level') }}"
+                        <input id="stress-level-range" type="range" min="0" max="10" name="stress_level"
+                            value="{{ session('stress_level') }}"
                             class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                             disabled>
                         <output id="range-stress-level"

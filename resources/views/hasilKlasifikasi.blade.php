@@ -28,10 +28,32 @@ if (!session()->has('user')) {
                         alt="" draggable="false" />
                 </div>
 
-                <p class="text-lg text-primary mb-4 mt-14">Berdasarkan informasi yang Anda berikan, ada indikasi bahwa
+                {{-- <p class="text-lg text-primary mb-4 mt-14">Berdasarkan informasi yang Anda berikan, ada indikasi bahwa
                     Anda mengalami gangguan tidur. Jangan khawatir, ada banyak cara yang dapat membantu Anda memperbaiki
                     kualitas tidur. Konsultasikan dengan profesional kesehatan untuk penanganan lebih lanjut dan
-                    mulailah mengambil langkah-langkah yang tepat untuk meningkatkan kualitas tidur Anda.</p>
+                    mulailah mengambil langkah-langkah yang tepat untuk meningkatkan kualitas tidur Anda.</p> --}}
+
+                @if (session('result'))
+                    <p class="text-lg text-primary mb-4 mt-14">Berdasarkan informasi yang Anda berikan,
+
+                        <span class="font-bold">
+                            <?php
+                            if (session('result')['prediction'] == 1) {
+                                echo 'Tidak ada indikasi bahwa Anda mengalami gangguan tidur.';
+                            } elseif (session('result')['prediction'] == 0) {
+                                echo 'Ada indikasi bahwa Anda mengalami insomnia.';
+                            } elseif (session('result')['prediction'] == 2) {
+                                echo 'Ada indikasi bahwa Anda mengalami sleep apnea.';
+                            }
+                            ?>
+                        </span>
+                        Jangan khawatir, ada banyak cara yang dapat membantu Anda memperbaiki kualitas tidur.
+                        Konsultasikan
+                        dengan profesional kesehatan untuk penanganan lebih lanjut dan mulailah mengambil
+                        langkah-langkah
+                        yang tepat untuk meningkatkan kualitas tidur Anda.
+                    </p>
+                @endif
                 <div class="text-left mt-8">
                     <h3 class="text-xl font-bold text-primary mb-4">Berikut beberapa tips yang dapat membantu Anda
                         meningkatkan kualitas tidur:</h3>
