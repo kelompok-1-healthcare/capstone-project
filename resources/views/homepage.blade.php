@@ -23,6 +23,22 @@ if ($sleepQuality > 80) {
     $sleepQualityCategory = 'Sangat Buruk';
 }
 
+// stress level
+$stressLevel = DB::table('users')->where('email', $emails)->value('score_stress_quality');
+$stressLevel = $stressLevel * 10;
+$stressLevelCategory = '';
+if ($stressLevel > 80) {
+    $stressLevelCategory = 'Sangat Tinggi';
+} elseif ($stressLevel > 60) {
+    $stressLevelCategory = 'Tinggi';
+} elseif ($stressLevel > 40) {
+    $stressLevelCategory = 'Cukup';
+} elseif ($stressLevel > 20) {
+    $stressLevelCategory = 'Rendah';
+} else {
+    $stressLevelCategory = 'Sangat Rendah';
+}
+
 ?>
 <!doctype html>
 <html>
@@ -63,19 +79,22 @@ if ($sleepQuality > 80) {
             </div>
 
             <!-- Right side -->
-            <div class="w-full md:w-1/2 bg-white rounded-xl shadow dark:bg-gray-800 flex flex-col items-center justify-center p-4 md:p-10 mb-4 md:mb-0 md:mr-4">
+            <div
+                class="w-full md:w-1/2 bg-white rounded-xl shadow dark:bg-gray-800 flex flex-col items-center justify-center p-4 md:p-10 mb-4 md:mb-0 md:mr-4">
                 <!-- Radial chart container -->
                 <div class="flex items-center justify-center mb-10">
                     <div class="w-full h-auto" id="stress-radial-chart"></div>
                 </div>
                 <!-- Persentase Keseluruhan -->
-                <div class="bg-teal-50 dark:bg-gray-600 rounded-lg flex flex-col md:flex-row items-center justify-center p-4">
-                    <div class="w-16 h-16 rounded-full bg-teal-200 text-bold text-lg font-bold flex items-center justify-center mb-4 md:mb-0 md:mr-4">
-                        <span id="stressPercentage">70%</span>
+                <div
+                    class="bg-teal-50 dark:bg-gray-600 rounded-lg flex flex-col md:flex-row items-center justify-center p-4">
+                    <div
+                        class="w-16 h-16 rounded-full bg-teal-200 text-bold text-lg font-bold flex items-center justify-center mb-4 md:mb-0 md:mr-4">
+                        {{ $stressLevel }}%
                     </div>
                     <div class="text-center md:text-left">
                         <h5 class="text-lg font-bold text-bold">Persentase Keseluruhan</h5>
-                        <p class="mt-2 text-sm text-primary">Tingkat stres Anda tergolong tinggi.</p>
+                        <p class="mt-2 text-sm text-primary">Tingkat stres Anda tergolong {{ $stressLevelCategory }}.
                     </div>
                 </div>
             </div>
@@ -234,10 +253,10 @@ if ($sleepQuality > 80) {
                     }
                 }
             };
-            
+
             // Static Stress Level 
             var stressRadialOptions = {
-                series: [70], 
+                series: [{{ $stressLevel }}],
                 chart: {
                     height: 350,
                     type: 'radialBar',
@@ -250,7 +269,7 @@ if ($sleepQuality > 80) {
                     },
                 },
                 labels: ['Tingkat Stres'],
-                colors: ['#025F80'],
+                colors: ['#FF0000'],
                 fill: {
                     type: 'gradient',
                     gradient: {
@@ -265,14 +284,15 @@ if ($sleepQuality > 80) {
                     }
                 }
             };
-            
+
 
             // Render Radial Chart
             var radialChart = new ApexCharts(document.querySelector("#radial-chart"), radialOptions);
             radialChart.render();
 
             // Render Stress Level Radial Chart
-            var stressRadialChart = new ApexCharts(document.querySelector("#stress-radial-chart"), stressRadialOptions);
+            var stressRadialChart = new ApexCharts(document.querySelector("#stress-radial-chart"),
+                stressRadialOptions);
             stressRadialChart.render();
         });
     </script>

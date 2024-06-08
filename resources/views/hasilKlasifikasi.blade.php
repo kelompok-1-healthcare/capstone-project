@@ -94,6 +94,19 @@ if (!session()->has('user')) {
                 navbar.classList.add('bg-transparent');
             }
         });
+
+        @if (session('result'))
+            $(document).ready(function() {
+                $('html, body').animate({
+                    scrollTop: $("#hasilKlasifikasi").offset().top
+                }, 1000);
+            });
+        @endif
+
+        // error
+        @if (session('error'))
+            alert("{{ session('error') }}");
+        @endif
     </script>
 </body>
 

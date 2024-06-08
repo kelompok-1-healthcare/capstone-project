@@ -235,7 +235,14 @@ class GeneralController extends Controller
     {
         $answers = $request->all();
 
-        $fields = ['gender', 'age', 'occupation', 'height', 'weight', 'tekananDarah', 'durationOfSleep', 'systolic', 'diastolic'];
+        echo "<pre>";
+        print_r($answers);
+        echo "</pre>";
+
+        $fields = [
+            'gender', 'age', 'occupation', 'height', 'weight', 'systolic', 'diastolic', 'heartRate', 'dailySteps', 'physicalActivity', 'durationOfSleep'
+        ];
+
         foreach ($fields as $field) {
             if (!isset($answers[$field])) {
                 return redirect('/form-klasifikasi-gangguan-tidur')->with('error', 'Please fill all fields');
@@ -298,26 +305,23 @@ class GeneralController extends Controller
                 break;
         }
 
-        $maxAttempts = 3;
-        $attempt = 0;
 
-        // echo "<pre>";
-        // print_r($gender);
-        // print_r($answers['age']);
-        // print_r($occupation);
-        // print_r($answers['durationOfSleep']);
-        // print_r(session('quality_of_sleep'));
-        // print_r(session('stress_level'));
-        // print_r($bmi);
-        // print_r($answers['tekananDarah']);
-        // echo "</pre>";
-
-        echo "<script>console.log(" . $gender . ", " . $answers['age'] . ", " . $occupation . ", " . $answers['durationOfSleep'] . ", " . session('quality_of_sleep') . ", " . session('stress_level') . ", " . $bmi . ", " . $answers['tekananDarah'] . ");</script>";
 
         $url = env('API_FLASK_URL') . '/predict';
         $data = [
             'features' => [
-                $gender, $answers['age'], $occupation, $answers['durationOfSleep'], session('quality_of_sleep'), session('stress_level'), $bmi, $answers['tekananDarah']
+                $gender,
+                $answers['age'],
+                $occupation,
+                $answers['durationOfSleep'],
+                session('quality_of_sleep'),
+                $answers['physicalActivity'],
+                // session('stress_level'),
+                $bmi,
+                $answers['heartRate'],
+                $answers['dailySteps'],
+                $answers['systolic'],
+                $answers['diastolic'],
             ]
         ];
 

@@ -14,6 +14,8 @@ if (!session()->has('stress_level')) {
     return view('formStressLevel');
 }
 
+$loadingText = 'Menghitung hasil klasifikasi...';
+
 ?>
 <!doctype html>
 <html>
@@ -22,6 +24,80 @@ if (!session()->has('stress_level')) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <style>
+        #loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 120px;
+            height: 120px;
+            margin: -76px 0 0 -76px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Add animation to "page content" */
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+
+            to {
+                bottom: 0;
+                opacity: 1
+            }
+        }
+
+        .loaderContainer {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
 </head>
 
 <body>
@@ -94,34 +170,41 @@ if (!session()->has('stress_level')) {
                         </div>
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-8">
-                        <label for="tekananDarahSistolik" class="block mb-2 text-sm font-medium text-bold">Tekanan Darah</label>
-                        <div class="flex items-center">
-                            <input type="number" id="tekananDarahSistolik" name="tekananDarahSistolik" min="60" max="250"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 mr-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        <label for="tekananDarahSistolik" class="block mb-2 text-sm font-medium text-bold">Tekanan
+                            Darah</label>
+                        <div class="input-group flex space-x-4 items-center">
+                            <input type="number" id="systolic" name="systolic" min="0" max="300"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Sistolik">
-                            <span class="text-gray-900 text-sm dark:text-white">/</span>
-                            <input type="number" id="tekananDarahDiastolik" name="tekananDarahDiastolik" min="40" max="150"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 ml-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+
+                            <span class="input-group-text">/</span>
+
+                            <input type="number" id="diastolic" name="diastolic" min="0" max="300"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Diastolik">
-                            <span class="text-gray-900 text-sm ml-2 dark:text-white">mmHg</span>
                         </div>
-                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Masukkan angka sistolik dan diastolik. Contoh: 120/80 mmHg</p>
+                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Masukkan angka sistolik dan diastolik.
+                            Contoh: 120/80 mmHg</p>
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-8">
-                        <label for="heart-rate-input" class="block mb-2 text-sm font-medium text-bold">Denyut Jantung (bpm)</label>
+                        <label for="heart-rate-input" class="block mb-2 text-sm font-medium text-bold">Denyut Jantung
+                            (bpm)</label>
                         <input type="number" id="heart-rate-input" name="heartRate" min="30" max="200"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Masukkan denyut jantung">
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-8">
-                        <label for="dailySteps" class="block mb-2 text-sm font-medium text-bold">Langkah Harian</label>
+                        <label for="dailySteps" class="block mb-2 text-sm font-medium text-bold">Langkah
+                            Harian</label>
                         <input type="number" id="dailySteps" name="dailySteps" min="0" max="100000"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Masukkan jumlah langkah harian anda">
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-8">
-                        <label for="physicalActivity" class="block mb-2 text-sm font-medium text-bold">Aktivitas Fisik (menit/hari)</label>
-                        <input type="number" id="physicalActivity" name="physicalActivity" min="0" max="1440"
+                        <label for="physicalActivity" class="block mb-2 text-sm font-medium text-bold">Aktivitas Fisik
+                            (menit/hari)</label>
+                        <input type="number" id="physicalActivity" name="physicalActivity" min="0"
+                            max="1440"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Masukkan jumlah menit per hari">
                     </div>
@@ -138,21 +221,24 @@ if (!session()->has('stress_level')) {
                     <div class="w-full md:w-1/2 px-4 mb-8">
                         <label for="stress-level-range" class="block mb-2 text-sm font-medium text-bold">Tingkat
                             Stres</label>
-                        <input id="stress-level-range" type="range" min="0" max="10" name="stress_level"
-                            value="{{ session('stress_level') }}"
+                        <input id="stress-level-range" type="range" min="0" max="10"
+                            name="stress_level" value="{{ session('stress_level') }}"
                             class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                             disabled>
                         <output id="range-stress-level"
                             class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">{{ session('stress_level') }}</output>
                     </div>
                     <div class="w-full md:w-1/2 px-4 mb-8">
-                        <label for="duration-range" class="block mb-2 text-sm font-medium text-bold text-center">Durasi Tidur (jam)</label>
-                        <input id="duration-range" type="range" min="0" max="10" step="0.1" value="0" name="durationOfSleep"
+                        <label for="duration-range"
+                            class="block mb-2 text-sm font-medium text-bold text-center">Durasi Tidur (jam)</label>
+                        <input id="duration-range" type="range" min="0" max="10" step="0.1"
+                            value="0" name="durationOfSleep"
                             class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-                        <output id="range-duration" class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">0.0</output>
+                        <output id="range-duration"
+                            class="text-sm mt-1 text-gray-600 dark:text-gray-400 text-center block">0.0</output>
                     </div>
                     <div class="w-full px-4 mt-10 text-center">
-                        <button type="submit"
+                        <button type="submit" id="submit-button"
                             class="w-1/2 md:w-1/3 bg-primary text-white py-2 px-4 rounded-lg hover:bg-gray-500 focus:ring-4 focus:outline-none">
                             Kirim
                         </button>
@@ -161,6 +247,19 @@ if (!session()->has('stress_level')) {
             </div>
         </div>
     </section>
+
+    <div
+        class="loaderContainer min-h-screen bg-white absolute top-0 left-0 z-50 w-full h-full flex items-center justify-center">
+        <div id="loader" class="bg-gray-100 dark:bg-gray-800 animate-bottom">
+
+        </div>
+        <div class="flex flex-col pt-24 items-center justify-center text-center text-gray-700 dark:text-gray-300">
+            <div class="text-center">
+                <div class="text-2xl font-bold text-primary">Mohon tunggu</div>
+                <div class="text-lg text-gray-500 dark:text-gray-400">{{ $loadingText }}</div>
+            </div>
+        </div>
+    </div>
 
     {{-- footer --}}
     @include('generalFooter')
@@ -221,6 +320,27 @@ if (!session()->has('stress_level')) {
         durationRange.addEventListener('input', function() {
             rangeDuration.textContent = durationRange.value;
         });
+
+        let loadingText = 'Loading...';
+        document.querySelector('form').addEventListener('submit', function() {
+            document.querySelector('.loaderContainer').classList.remove('hidden');
+            document.querySelector('.loaderContainer').classList.add('flex');
+            document.getElementById('submit-button').disabled = true;
+
+            let i = 0;
+            setInterval(() => {
+                if (i == 3) i = 0;
+                if (i == 0) loadingText = 'Loading.';
+                if (i == 1) loadingText = 'Loading..';
+                if (i == 2) loadingText = 'Loading...';
+                document.querySelector('.loaderContainer .text-lg').textContent = loadingText;
+                i++;
+            }, 500);
+        });
+
+        @if (session('error'))
+            alert("{{ session('error') }}");
+        @endif
     </script>
 </body>
 
