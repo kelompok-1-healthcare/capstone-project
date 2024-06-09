@@ -269,7 +269,7 @@ if ($stressLevel > 80) {
                     },
                 },
                 labels: ['Tingkat Stres'],
-                colors: ['#FF0000'],
+                colors: ['#025F80'],
                 fill: {
                     type: 'gradient',
                     gradient: {
