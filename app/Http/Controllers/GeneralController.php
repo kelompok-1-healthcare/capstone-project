@@ -316,7 +316,7 @@ class GeneralController extends Controller
                 $answers['durationOfSleep'],
                 session('quality_of_sleep'),
                 $answers['physicalActivity'],
-                // session('stress_level'),
+                session('stress_level'),
                 $bmi,
                 $answers['heartRate'],
                 $answers['dailySteps'],

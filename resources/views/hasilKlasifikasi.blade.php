@@ -34,6 +34,9 @@ if (!session()->has('user')) {
                     mulailah mengambil langkah-langkah yang tepat untuk meningkatkan kualitas tidur Anda.</p> --}}
 
                 @if (session('result'))
+                    <?php
+                    echo "<script>console.log('" . json_encode(session('result')) . "')</script>";
+                    ?>
                     <p class="text-lg text-primary mb-4 mt-14">Berdasarkan informasi yang Anda berikan,
 
                         <span class="font-bold">

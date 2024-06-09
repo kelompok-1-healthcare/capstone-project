@@ -249,7 +249,7 @@ $loadingText = 'Menghitung hasil klasifikasi...';
     </section>
 
     <div
-        class="loaderContainer min-h-screen bg-white absolute top-0 left-0 z-50 w-full h-full flex items-center justify-center">
+        class="loaderContainer min-h-screen bg-white absolute top-0 left-0 z-50 w-full h-full flex items-center justify-center hidden">
         <div id="loader" class="bg-gray-100 dark:bg-gray-800 animate-bottom">
 
         </div>
